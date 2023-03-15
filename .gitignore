@@ -30,3 +30,4 @@ dependency-reduced-pom.xml
 
 # Intellij Directories
 .idea
+lisp.iml
