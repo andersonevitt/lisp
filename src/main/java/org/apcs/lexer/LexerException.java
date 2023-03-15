@@ -17,8 +17,15 @@
 
 package org.apcs.lexer;
 
-import lombok.experimental.StandardException;
-
-@StandardException
 public class LexerException extends RuntimeException {
+    public LexerException() {this(null, null);}
+
+    public LexerException(final String message) {this(message, null);}
+
+    public LexerException(final Throwable cause) {this(cause != null ? cause.getMessage() : null, cause);}
+
+    public LexerException(final String message, final Throwable cause) {
+        super(message);
+        if (cause != null) super.initCause(cause);
+    }
 }

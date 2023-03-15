@@ -17,7 +17,6 @@
 
 package org.apcs.lexer;
 
-import lombok.Getter;
 import lombok.NonNull;
 import org.apcs.util.PeekableIterator;
 
@@ -27,7 +26,6 @@ import static org.apcs.lexer.TokenFactory.*;
 import static org.apcs.util.CharacterUtils.isWhitespace;
 
 public class Lexer implements Iterator<Token>, Iterable<Token> {
-    @Getter
     private final PeekableIterator<Character> iterator;
 
     public Lexer(@NonNull final Iterator<Character> stream) {
@@ -102,4 +100,6 @@ public class Lexer implements Iterator<Token>, Iterable<Token> {
     public Iterator<Token> iterator() {
         return this;
     }
+
+    public PeekableIterator<Character> getIterator() {return this.iterator;}
 }

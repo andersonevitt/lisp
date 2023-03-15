@@ -18,9 +18,6 @@
 package org.apcs.lexer;
 
 
-import lombok.EqualsAndHashCode;
-
-@EqualsAndHashCode
 public final class Number extends Token {
     private final int value;
 
@@ -34,5 +31,23 @@ public final class Number extends Token {
 
     public String toString() {
         return "NUMBER(" + value + ")";
+    }
+
+    public boolean equals(final Object o) {
+        if (o == this) return true;
+        if (!(o instanceof Number)) return false;
+        final Number other = (Number) o;
+        if (!other.canEqual((Object) this)) return false;
+        if (this.getValue() != other.getValue()) return false;
+        return true;
+    }
+
+    protected boolean canEqual(final Object other) {return other instanceof Number;}
+
+    public int hashCode() {
+        final int PRIME = 59;
+        int result = 1;
+        result = result * PRIME + this.getValue();
+        return result;
     }
 }

@@ -18,17 +18,8 @@
 package org.apcs.lexer;
 
 
-import lombok.*;
-
-@AllArgsConstructor
-@EqualsAndHashCode
-@ToString
 public class Position {
-    @Getter
-    @Setter
     private int line;
-    @Getter
-    @Setter
     private int column;
 
     public Position() {
@@ -36,11 +27,52 @@ public class Position {
         column = 0;
     }
 
-    public int nextLine() {
-        return line += 1;
+    public Position(int line, int column) {
+        this.line = line;
+        this.column = column;
     }
 
-    public int nextColumn() {
-        return column += 1;
+    public void nextLine() {
+        line += 1;
+    }
+
+    public void nextColumn() {
+        column += 1;
+    }
+
+    public boolean equals(final Object o) {
+        if (o == this) return true;
+        if (!(o instanceof Position)) return false;
+        final Position other = (Position) o;
+        if (!other.canEqual((Object) this)) return false;
+        if (this.line != other.line) return false;
+        if (this.column != other.column) return false;
+        return true;
+    }
+
+    protected boolean canEqual(final Object other) {return other instanceof Position;}
+
+    public int hashCode() {
+        final int PRIME = 59;
+        int result = 1;
+        result = result * PRIME + this.line;
+        result = result * PRIME + this.column;
+        return result;
+    }
+
+    public String toString() {return "Position(line=" + this.line + ", column=" + this.column + ")";}
+
+    public int getLine() {return this.line;}
+
+    public int getColumn() {return this.column;}
+
+    public Position setLine(int line) {
+        this.line = line;
+        return this;
+    }
+
+    public Position setColumn(int column) {
+        this.column = column;
+        return this;
     }
 }

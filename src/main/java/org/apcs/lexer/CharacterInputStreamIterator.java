@@ -17,7 +17,6 @@
 
 package org.apcs.lexer;
 
-import lombok.Getter;
 import lombok.NonNull;
 
 import java.io.BufferedReader;
@@ -28,7 +27,6 @@ import java.util.Iterator;
 
 
 public class CharacterInputStreamIterator implements Iterator<Character> {
-    @Getter
     @NonNull
     private final BufferedReader reader;
 
@@ -62,4 +60,6 @@ public class CharacterInputStreamIterator implements Iterator<Character> {
             throw new RuntimeException(e);
         }
     }
+
+    public @NonNull BufferedReader getReader() {return this.reader;}
 }

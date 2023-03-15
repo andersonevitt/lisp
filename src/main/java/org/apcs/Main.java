@@ -17,13 +17,14 @@
 
 package org.apcs;
 
-import lombok.extern.slf4j.Slf4j;
 import org.apcs.lexer.CharacterStream;
 import org.apcs.lexer.Lexer;
 import org.apcs.parser.Parser;
+import org.slf4j.Logger;
 
-@Slf4j
 public class Main {
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(Main.class);
+
     public static void main(String[] args) throws Exception {
 
         var lexer = new Lexer(new CharacterStream("(some or another 12 (1 2 3 ()) 234)"));
