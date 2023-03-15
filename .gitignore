@@ -27,3 +27,6 @@ replay_pid*
 # Maven artifacts
 target/
 dependency-reduced-pom.xml
+
+# Intellij Directories
+.idea
