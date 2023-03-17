@@ -30,8 +30,7 @@ import static org.apcs.lexer.TokenFactory.*;
 public class LexerTests {
 
     private Lexer createLexer(String values) {
-        var stream = new ByteArrayInputStream(values.getBytes());
-        return new Lexer(new CharacterInputStreamIterator(stream));
+        return new Lexer(new CharacterStream(values));
     }
 
     // Asserts input matches values
