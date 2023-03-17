@@ -31,9 +31,11 @@ public final class StringToken extends Token {
         return other.getValue().equals(value);
     }
 
+    public @NonNull String getValue() {
+        return this.value;
+    }
+
     public String toString() {
         return "STRING(" + value + ")";
     }
-
-    public @NonNull String getValue() {return this.value;}
 }

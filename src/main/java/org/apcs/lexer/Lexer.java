@@ -67,8 +67,7 @@ public class Lexer implements Iterator<Token>, Iterable<Token> {
             }
 
             case ';' -> {
-                while (iterator.peek() != '\n')
-                    iterator.next();
+                while (iterator.peek() != '\n') iterator.next();
 
 
                 // TODO: This could potentially cause a stack overflow in really large numbers and is *slightly*
@@ -101,5 +100,7 @@ public class Lexer implements Iterator<Token>, Iterable<Token> {
         return this;
     }
 
-    public PeekableIterator<Character> getIterator() {return this.iterator;}
+    public PeekableIterator<Character> getIterator() {
+        return this.iterator;
+    }
 }

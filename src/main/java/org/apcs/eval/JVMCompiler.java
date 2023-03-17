@@ -1,7 +1,5 @@
 package org.apcs.eval;
 
-import net.bytebuddy.ByteBuddy;
-import net.bytebuddy.dynamic.DynamicType;
 import org.apcs.parser.Value;
 
 import java.io.FileOutputStream;

@@ -40,35 +40,29 @@ public class Position {
         column += 1;
     }
 
-    public boolean equals(final Object o) {
-        if (o == this) return true;
-        if (!(o instanceof Position)) return false;
-        final Position other = (Position) o;
-        if (!other.canEqual((Object) this)) return false;
-        if (this.line != other.line) return false;
-        if (this.column != other.column) return false;
-        return true;
+    public boolean equals(final Position o) {
+        return this.line == o.line && this.column == o.column;
     }
 
-    protected boolean canEqual(final Object other) {return other instanceof Position;}
-
-    public int hashCode() {
-        final int PRIME = 59;
-        int result = 1;
-        result = result * PRIME + this.line;
-        result = result * PRIME + this.column;
-        return result;
+    protected boolean canEqual(final Object other) {
+        return other instanceof Position;
     }
 
-    public String toString() {return "Position(line=" + this.line + ", column=" + this.column + ")";}
+    public String toString() {
+        return "Position(line=" + this.line + ", column=" + this.column + ")";
+    }
 
-    public int getLine() {return this.line;}
-
-    public int getColumn() {return this.column;}
+    public int getLine() {
+        return this.line;
+    }
 
     public Position setLine(int line) {
         this.line = line;
         return this;
+    }
+
+    public int getColumn() {
+        return this.column;
     }
 
     public Position setColumn(int column) {

@@ -17,8 +17,10 @@
 
 package org.apcs.lexer;
 
+import lombok.EqualsAndHashCode;
 import lombok.NonNull;
 
+@EqualsAndHashCode(callSuper = false)
 public final class Symbol extends Token {
     @NonNull
     private final String value;
@@ -32,26 +34,7 @@ public final class Symbol extends Token {
         return "ATOM(" + value + ")";
     }
 
-    public boolean equals(final Object o) {
-        if (o == this) return true;
-        if (!(o instanceof Symbol)) return false;
-        final Symbol other = (Symbol) o;
-        if (!other.canEqual((Object) this)) return false;
-        final Object this$value = this.value;
-        final Object other$value = other.value;
-        if (this$value == null ? other$value != null : !this$value.equals(other$value)) return false;
-        return true;
+    public @NonNull String getValue() {
+        return this.value;
     }
-
-    protected boolean canEqual(final Object other) {return other instanceof Symbol;}
-
-    public int hashCode() {
-        final int PRIME = 59;
-        int result = 1;
-        final Object $value = this.value;
-        result = result * PRIME + ($value == null ? 43 : $value.hashCode());
-        return result;
-    }
-
-    public @NonNull String getValue() {return this.value;}
 }

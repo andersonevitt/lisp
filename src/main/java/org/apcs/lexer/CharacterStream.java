@@ -27,7 +27,7 @@ public class CharacterStream implements PeekableIterator<Character> {
     @NonNull
     private final BufferedReader reader;
     @NonNull
-    private Position position;
+    private final Position position;
 
 
     public CharacterStream(BufferedReader reader) {
@@ -72,20 +72,6 @@ public class CharacterStream implements PeekableIterator<Character> {
     }
 
     @Override
-    public Character peek() {
-        try {
-            reader.mark(1);
-            int value = reader.read();
-            reader.reset();
-            return (char) value;
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-
-    }
-
-    @Override
     public Character next() {
         try {
             char value = (char) reader.read();
@@ -102,7 +88,25 @@ public class CharacterStream implements PeekableIterator<Character> {
         }
     }
 
-    public @NonNull BufferedReader getReader() {return this.reader;}
+    @Override
+    public Character peek() {
+        try {
+            reader.mark(1);
+            int value = reader.read();
+            reader.reset();
+            return (char) value;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
-    public @NonNull Position getPosition() {return this.position;}
+
+    }
+
+    public @NonNull BufferedReader getReader() {
+        return this.reader;
+    }
+
+    public @NonNull Position getPosition() {
+        return this.position;
+    }
 }
