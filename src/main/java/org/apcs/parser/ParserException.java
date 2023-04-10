@@ -20,4 +20,5 @@ package org.apcs.parser;
 import lombok.experimental.StandardException;
 
 @StandardException
-public class ParserException extends RuntimeException {}
+public class ParserException extends RuntimeException {
+}

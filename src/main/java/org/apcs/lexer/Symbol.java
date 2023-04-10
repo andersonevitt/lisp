@@ -17,21 +17,20 @@
 
 package org.apcs.lexer;
 
-import lombok.EqualsAndHashCode;
 import lombok.NonNull;
 
-@EqualsAndHashCode(callSuper = false)
+
 public final class Symbol extends Token {
     @NonNull
     private final String value;
 
-    public Symbol(@NonNull String value) {
+    public Symbol(String value) {
         this.value = value;
     }
 
     @Override
     public String toString() {
-        return "ATOM(" + value + ")";
+        return "SYMBOL(" + value + ")";
     }
 
     public @NonNull String getValue() {

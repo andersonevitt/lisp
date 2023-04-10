@@ -17,7 +17,7 @@
 
 package org.apcs.lexer;
 
-public abstract sealed class Token permits Symbol, LeftParen, Number, RightParen, StringToken {
+public abstract sealed class Token permits Symbol, LeftParen, NumberToken, RightParen, StringToken {
 
     public abstract Object getValue();
 
@@ -34,7 +34,7 @@ public abstract sealed class Token permits Symbol, LeftParen, Number, RightParen
     }
 
     public boolean isNumber() {
-        return this instanceof Number;
+        return this instanceof NumberToken;
     }
 
     public boolean isString() {

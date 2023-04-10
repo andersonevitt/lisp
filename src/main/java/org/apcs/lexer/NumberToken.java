@@ -17,13 +17,11 @@
 
 package org.apcs.lexer;
 
-import lombok.EqualsAndHashCode;
 
-@EqualsAndHashCode(callSuper = true)
-public final class Number extends Token {
+public final class NumberToken extends Token {
     private final int value;
 
-    Number(int value) {
+    NumberToken(int value) {
         this.value = value;
     }
 

@@ -19,17 +19,15 @@ package org.apcs;
 
 import org.apcs.lexer.CharacterStream;
 import org.apcs.lexer.Lexer;
-import org.apcs.parser.Parser;
-import org.slf4j.Logger;
 
 public class Main {
-    private static final Logger log = org.slf4j.LoggerFactory.getLogger(Main.class);
-
     public static void main(String[] args) throws Exception {
+        var lexer = new Lexer(new CharacterStream("(+ some 20)"));
+        lexer.forEachRemaining(System.out::println);
 
-        var lexer = new Lexer(new CharacterStream("(some or another 12 (1 2 3 ()) 234)"));
-        var parser = new Parser(lexer);
-
-        parser.forEachRemaining(System.out::println);
+//
+//        var parser = new Parser(lexer);
+//
+//        parser.forEachRemaining(System.out::println);
     }
 }

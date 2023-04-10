@@ -47,7 +47,7 @@ public class TokenFactory {
     }
 
     public static Token getNumber(int value) {
-        return new Number(value);
+        return new NumberToken(value);
     }
 
     public static Token getAtom(@NonNull String name) {
