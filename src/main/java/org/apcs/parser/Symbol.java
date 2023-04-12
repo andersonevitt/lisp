@@ -22,7 +22,7 @@ import lombok.EqualsAndHashCode;
 
 @AllArgsConstructor
 @EqualsAndHashCode
-public class Atom extends Value {
+public class Symbol extends Value {
     String name;
 
     public String toString() {

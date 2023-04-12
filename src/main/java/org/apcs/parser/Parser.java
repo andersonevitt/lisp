@@ -58,7 +58,7 @@ public class Parser implements Iterator<Value> {
 
         if (lexer.peek().isSymbol()) {
             log.trace("Parsed atom");
-            return new Atom((String) lexer.next().getValue());
+            return new Symbol((String) lexer.next().getValue());
         }
 
         if (lexer.peek().isNumber()) {

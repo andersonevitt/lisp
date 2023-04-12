@@ -19,12 +19,14 @@ package org.apcs.parser;
 
 public abstract class Value {
 
+    abstract Object getValue();
+
     public boolean isNumber() {
         return this instanceof Number;
     }
 
     public boolean isAtom() {
-        return this instanceof Atom;
+        return this instanceof Symbol;
     }
 
     public boolean isList() {

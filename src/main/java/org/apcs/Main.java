@@ -19,15 +19,14 @@ package org.apcs;
 
 import org.apcs.lexer.CharacterStream;
 import org.apcs.lexer.Lexer;
+import org.apcs.parser.Parser;
 
 public class Main {
     public static void main(String[] args) throws Exception {
         var lexer = new Lexer(new CharacterStream("(+ some 20)"));
-        lexer.forEachRemaining(System.out::println);
 
-//
-//        var parser = new Parser(lexer);
-//
-//        parser.forEachRemaining(System.out::println);
+        var parser = new Parser(lexer);
+
+        parser.forEachRemaining(System.out::println);
     }
 }

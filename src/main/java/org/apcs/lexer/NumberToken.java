@@ -28,4 +28,8 @@ public final class NumberToken extends Token {
     public Integer getValue() {
         return value;
     }
+
+    public String toString() {
+        return "NUMBER(" + value + ")";
+    }
 }
