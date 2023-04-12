@@ -46,4 +46,9 @@ public class ListValue extends Value {
 
         return body.toString();
     }
+
+    @Override
+    Object getValue() {
+        return values;
+    }
 }

@@ -28,4 +28,8 @@ public class Number extends Value {
     public String toString() {
         return Integer.toString(value);
     }
+
+    public Integer getValue() {
+        return value;
+    }
 }

@@ -28,4 +28,9 @@ public class Symbol extends Value {
     public String toString() {
         return name;
     }
+
+    @Override
+    Object getValue() {
+        return name;
+    }
 }
