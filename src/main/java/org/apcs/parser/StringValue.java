@@ -23,7 +23,6 @@ import org.apcs.lexer.StringToken;
 
 @AllArgsConstructor
 public class StringValue extends Value {
-    @Getter
     private final String value;
 
     public boolean equals(StringToken other) {

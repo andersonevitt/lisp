@@ -32,4 +32,9 @@ public class Number extends Value {
     public Integer getValue() {
         return value;
     }
+
+    @Override
+    Value eval(Environment env) {
+        return this;
+    }
 }

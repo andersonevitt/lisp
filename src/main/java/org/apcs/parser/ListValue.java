@@ -51,4 +51,13 @@ public class ListValue extends Value {
     Object getValue() {
         return values;
     }
+
+    @Override
+    Value eval(Environment env) {
+        var old = new Environment(env);
+
+
+        env = old.parent;
+        return null;
+    }
 }

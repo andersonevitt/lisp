@@ -32,7 +32,6 @@ import java.util.List;
 @ToString
 public class Parser implements Iterator<Value> {
     @Getter
-
     private final PeekableIterator<Token> lexer;
 
     public Parser(Iterator<Token> lexer) {
@@ -73,7 +72,7 @@ public class Parser implements Iterator<Value> {
             List<Value> values = new ArrayList<>();
             lexer.next();
 
-            while (!lexer.peek().isRightParen()) {
+            while (!lexer.peek().isRightParen() && lexer.hasNext()) {
                 values.add(parse());
             }
 

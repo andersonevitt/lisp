@@ -33,4 +33,9 @@ public class Symbol extends Value {
     Object getValue() {
         return name;
     }
+
+    @Override
+    Value eval(Environment env) {
+        return null;
+    }
 }

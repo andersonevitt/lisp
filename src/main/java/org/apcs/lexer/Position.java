@@ -17,7 +17,7 @@
 
 package org.apcs.lexer;
 
-
+// TODO: Add copy constructor
 public class Position {
     private int line;
     private int column;
@@ -42,10 +42,6 @@ public class Position {
 
     public boolean equals(final Position o) {
         return this.line == o.line && this.column == o.column;
-    }
-
-    protected boolean canEqual(final Object other) {
-        return other instanceof Position;
     }
 
     public String toString() {

@@ -21,6 +21,8 @@ public abstract class Value {
 
     abstract Object getValue();
 
+    abstract Value eval(Environment env);
+
     public boolean isNumber() {
         return this instanceof Number;
     }

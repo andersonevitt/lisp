@@ -22,8 +22,6 @@ import lombok.Getter;
 import java.util.Iterator;
 
 public class BufferedPeekableIterator<E> implements PeekableIterator<E> {
-
-
     @Getter
     private final Iterator<? extends E> iterator;
     @Getter

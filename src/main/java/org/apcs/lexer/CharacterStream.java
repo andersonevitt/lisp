@@ -50,7 +50,7 @@ public class CharacterStream implements PeekableIterator<Character> {
 
     public CharacterStream(File input) throws FileNotFoundException {
         this.reader = new BufferedReader(new InputStreamReader(new FileInputStream(input)));
-        this.position = new Position(0, 0);
+        this.position = new Position();
     }
 
     @Override
