@@ -17,16 +17,15 @@
 
 package org.apcs.lexer;
 
-import lombok.NonNull;
 import org.apcs.util.PeekableIterator;
 
 import java.io.*;
 import java.nio.file.Path;
 
 public class CharacterStream implements PeekableIterator<Character> {
-    @NonNull
+
     private final BufferedReader reader;
-    @NonNull
+
     private final Position position;
 
 
@@ -102,11 +101,11 @@ public class CharacterStream implements PeekableIterator<Character> {
 
     }
 
-    public @NonNull BufferedReader getReader() {
+    public BufferedReader getReader() {
         return this.reader;
     }
 
-    public @NonNull Position getPosition() {
+    public Position getPosition() {
         return this.position;
     }
 }

@@ -17,11 +17,7 @@
 
 package org.apcs.lexer;
 
-import lombok.NonNull;
-
-
 public final class Symbol extends Token {
-    @NonNull
     private final String value;
 
     public Symbol(String value) {
@@ -33,7 +29,7 @@ public final class Symbol extends Token {
         return "SYMBOL(" + value + ")";
     }
 
-    public @NonNull String getValue() {
+    public String getValue() {
         return this.value;
     }
 }

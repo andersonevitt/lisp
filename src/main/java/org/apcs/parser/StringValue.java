@@ -19,16 +19,14 @@ package org.apcs.parser;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NonNull;
 import org.apcs.lexer.StringToken;
 
 @AllArgsConstructor
 public class StringValue extends Value {
-    @NonNull
     @Getter
     private final String value;
 
-    public boolean equals(@NonNull StringToken other) {
+    public boolean equals(StringToken other) {
         return other.getValue().equals(value);
     }
 

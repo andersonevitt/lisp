@@ -17,21 +17,18 @@
 
 package org.apcs.lexer;
 
-import lombok.NonNull;
-
 public final class StringToken extends Token {
-    @NonNull
     private final String value;
 
-    public StringToken(@NonNull String value) {
+    public StringToken(String value) {
         this.value = value;
     }
 
-    public boolean equals(@NonNull StringToken other) {
+    public boolean equals(StringToken other) {
         return other.getValue().equals(value);
     }
 
-    public @NonNull String getValue() {
+    public String getValue() {
         return this.value;
     }
 

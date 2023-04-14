@@ -18,8 +18,6 @@
 package org.apcs.lexer;
 
 
-import lombok.NonNull;
-
 public class TokenFactory {
     private static final Token LEFT_PAREN = new LeftParen();
     private static final Token RIGHT_PAREN = new RightParen();
@@ -38,7 +36,7 @@ public class TokenFactory {
         return new StringToken(value);
     }
 
-    public static Token getAtomOrNumber(@NonNull String matched) {
+    public static Token getAtomOrNumber(String matched) {
         try {
             return getNumber(Integer.parseInt(matched));
         } catch (NumberFormatException e) {
@@ -50,7 +48,7 @@ public class TokenFactory {
         return new NumberToken(value);
     }
 
-    public static Token getAtom(@NonNull String name) {
+    public static Token getAtom(String name) {
         return new Symbol(name);
     }
 }

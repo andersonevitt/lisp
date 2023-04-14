@@ -22,11 +22,10 @@ import org.apcs.lexer.Lexer;
 import org.apcs.parser.Parser;
 
 public class Main {
-    public static void main(String[] args) throws Exception {
-        var lexer = new Lexer(new CharacterStream("(+ some 20)"));
+    public static void main(String[] args) {
+        var lexer = new Lexer(new CharacterStream("(+ some\n 20 (\nsome 12 32\n\n \"some\"))"));
 
         var parser = new Parser(lexer);
-
         parser.forEachRemaining(System.out::println);
     }
 }

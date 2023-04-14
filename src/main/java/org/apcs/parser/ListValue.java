@@ -31,18 +31,18 @@ public class ListValue extends Value {
 
     public String toString() {
         if (values.size() == 0) {
-            return "()";
+            return "{}";
         }
 
         StringBuilder body = new StringBuilder();
-        body.append("(");
+        body.append("{");
 
         for (int i = 0; i < values.size() - 1; i++) {
-            body.append(values.get(i)).append(" ");
+            body.append(values.get(i)).append(", ");
         }
 
         body.append(values.get(values.size() - 1));
-        body.append(")");
+        body.append("}");
 
         return body.toString();
     }

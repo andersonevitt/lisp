@@ -18,13 +18,12 @@
 package org.apcs.util;
 
 import lombok.Getter;
-import lombok.NonNull;
 
 import java.util.Iterator;
 
 public class BufferedPeekableIterator<E> implements PeekableIterator<E> {
 
-    @NonNull
+
     @Getter
     private final Iterator<? extends E> iterator;
     @Getter

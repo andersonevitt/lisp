@@ -18,7 +18,6 @@
 package org.apcs.parser;
 
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import org.apcs.lexer.Token;
@@ -33,7 +32,7 @@ import java.util.List;
 @ToString
 public class Parser implements Iterator<Value> {
     @Getter
-    @NonNull
+
     private final PeekableIterator<Token> lexer;
 
     public Parser(Iterator<Token> lexer) {
