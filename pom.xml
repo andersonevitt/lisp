@@ -61,12 +61,6 @@
             <version>2.0.5</version>
             <scope>compile</scope>
         </dependency>
-        <dependency>
-            <groupId>org.jetbrains</groupId>
-            <artifactId>annotations</artifactId>
-            <scope>provided</scope>
-            <version>24.0.1</version>
-        </dependency>
     </dependencies>
 
     <build>
