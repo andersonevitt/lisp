@@ -15,16 +15,17 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.apcs.parser;
+package org.apcs.ast;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import org.apcs.parser.Environment;
 
 import java.util.List;
 
 @AllArgsConstructor
-public class ListValue extends Value {
+public class ListValue implements Value {
     @Getter
     @Setter
     private List<Value> values;
@@ -48,16 +49,36 @@ public class ListValue extends Value {
     }
 
     @Override
-    Object getValue() {
+    public Object getValue() {
         return values;
     }
 
     @Override
-    Value eval(Environment env) {
-        var old = new Environment(env);
+    public Value eval(Environment env) {
+        var newEnv = new Environment(env);
 
+        var func = env.get((String) values.remove(0).getValue());
 
-        env = old.parent;
-        return null;
+        Value out = null;
+        if (func instanceof Builtin bf) {
+            out = bf.eval(newEnv);
+        } else if (func instanceof Lambda l) {
+            for (int i = 0; i < l.getArgs().size(); i++) {
+                newEnv.set(l.getArgs().get(i), values.get(i));
+            }
+
+            out = evalList(values, env);
+        }
+
+        env = newEnv.parent;
+        return out;
+    }
+
+    public Value evalList(List<Value> list, Environment env) {
+        for (int i = 0; i < list.size() - 1; i++) {
+            list.get(i).eval(env);
+        }
+
+        return list.get(list.size() - 1).eval(env);
     }
 }

@@ -15,27 +15,29 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.apcs.parser;
+package org.apcs.ast;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
+import org.apcs.parser.Environment;
 
-@AllArgsConstructor
-@EqualsAndHashCode
-public class Symbol extends Value {
-    String name;
+public interface Value {
 
-    public String toString() {
-        return name;
+    Object getValue();
+
+    Value eval(Environment env);
+
+    default boolean isNumber() {
+        return this instanceof Number;
     }
 
-    @Override
-    Object getValue() {
-        return name;
+    default boolean isAtom() {
+        return this instanceof Symbol;
     }
 
-    @Override
-    Value eval(Environment env) {
-        return null;
+    default boolean isList() {
+        return this instanceof ListValue;
+    }
+
+    default boolean isString() {
+        return this instanceof StringValue;
     }
 }

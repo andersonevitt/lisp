@@ -15,27 +15,27 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.apcs.parser;
+package org.apcs.ast;
 
-public abstract class Value {
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import org.apcs.parser.Environment;
 
-    abstract Object getValue();
+@Data
+@AllArgsConstructor
+public class Number implements Value {
+    int value;
 
-    abstract Value eval(Environment env);
-
-    public boolean isNumber() {
-        return this instanceof Number;
+    public String toString() {
+        return Integer.toString(value);
     }
 
-    public boolean isAtom() {
-        return this instanceof Symbol;
+    public Integer getValue() {
+        return value;
     }
 
-    public boolean isList() {
-        return this instanceof ListValue;
-    }
-
-    public boolean isString() {
-        return this instanceof StringValue;
+    @Override
+    public Value eval(Environment env) {
+        return this;
     }
 }

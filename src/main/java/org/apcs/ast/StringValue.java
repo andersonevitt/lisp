@@ -15,14 +15,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.apcs.parser;
+package org.apcs.ast;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import org.apcs.lexer.StringToken;
+import org.apcs.parser.Environment;
 
 @AllArgsConstructor
-public class StringValue extends Value {
+public class StringValue implements Value {
     private final String value;
 
     public boolean equals(StringToken other) {
@@ -31,5 +31,15 @@ public class StringValue extends Value {
 
     public String toString() {
         return "\"" + value + "\"";
+    }
+
+    public String getValue() {
+        return value;
+
+
+    }
+
+    public Value eval(Environment env) {
+        return this;
     }
 }

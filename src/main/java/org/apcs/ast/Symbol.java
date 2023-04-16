@@ -15,26 +15,28 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.apcs.parser;
+package org.apcs.ast;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import org.apcs.parser.Environment;
 
-@Data
 @AllArgsConstructor
-public class Number extends Value {
-    int value;
+@EqualsAndHashCode
+public class Symbol implements Value {
+    String name;
 
     public String toString() {
-        return Integer.toString(value);
-    }
-
-    public Integer getValue() {
-        return value;
+        return name;
     }
 
     @Override
-    Value eval(Environment env) {
-        return this;
+    public Object getValue() {
+        return name;
+    }
+
+    @Override
+    public Value eval(Environment env) {
+        return env.get(name);
     }
 }
