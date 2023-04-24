@@ -20,7 +20,7 @@ package org.apcs.ast;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import org.apcs.parser.Environment;
+import org.apcs.inter.Environment;
 
 import java.util.List;
 
@@ -57,16 +57,16 @@ public class ListValue implements Value {
     public Value eval(Environment env) {
         var newEnv = new Environment(env);
 
-        var func = env.get((String) values.remove(0).getValue());
+        var func = newEnv.get((String) values.remove(0).getValue());
 
         Value out = null;
         if (func instanceof Builtin bf) {
-            out = bf.eval(newEnv);
+            System.out.println("Here");
+            out = bf.apply(env, values.toArray(new Value[2]));
         } else if (func instanceof Lambda l) {
-            for (int i = 0; i < l.getArgs().size(); i++) {
-                newEnv.set(l.getArgs().get(i), values.get(i));
+            for (int i = 0; i < l.args().size(); i++) {
+                newEnv.set(l.args().get(i), values.get(i));
             }
-
             out = evalList(values, env);
         }
 

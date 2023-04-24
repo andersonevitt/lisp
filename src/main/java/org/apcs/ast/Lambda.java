@@ -1,15 +1,10 @@
 package org.apcs.ast;
 
-import org.apcs.parser.Environment;
+import org.apcs.inter.Environment;
 
 import java.util.List;
 
-@lombok.Value
-public class Lambda implements Value {
-    List<String> args;
-    List<Value> body;
-
-
+public record Lambda(List<String> args, List<Value> body) implements Value {
     @Override
     public Object getValue() {
         return args;
@@ -17,6 +12,6 @@ public class Lambda implements Value {
 
     @Override
     public Value eval(Environment env) {
-        return null;
+        return this;
     }
 }

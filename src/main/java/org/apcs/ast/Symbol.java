@@ -19,7 +19,7 @@ package org.apcs.ast;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
-import org.apcs.parser.Environment;
+import org.apcs.inter.Environment;
 
 @AllArgsConstructor
 @EqualsAndHashCode

@@ -1,4 +1,4 @@
-package org.apcs.parser;
+package org.apcs.inter;
 
 import org.apcs.ast.Value;
 
@@ -6,21 +6,22 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Environment {
-    Map<String, Value> values;
     public Environment parent;
+    Map<String, Value> values;
 
     public Environment(Environment parent) {
         this.parent = parent;
         this.values = new HashMap<>();
+
+        standardEnv();
+    }
+
+    public Environment() {
+        this(null);
     }
 
     public void set(String name, Value value) {
-        Environment env = this.findEnvironment(name);
-        if (env != null) {
-            env.values.put(name, value);
-        } else {
-            this.values.put(name, value);
-        }
+        this.values.put(name, value);
     }
 
     Environment findEnvironment(String name) {
@@ -36,7 +37,13 @@ public class Environment {
         if (env != null && env.values.containsKey(name)) {
             return env.values.get(name);
         } else {
-            return null;
+            throw new RuntimeException(String.format("Unable to find \"%s\"", name));
         }
+    }
+
+    private void standardEnv() {
+        this.values.put("+", new Add());
+        this.values.put("def", new Define());
+
     }
 }

@@ -20,8 +20,8 @@ package org.apcs.parser;
 import lombok.Getter;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
-import org.apcs.ast.*;
 import org.apcs.ast.Number;
+import org.apcs.ast.*;
 import org.apcs.lexer.Token;
 import org.apcs.util.PeekableIterator;
 

@@ -17,7 +17,7 @@
 
 package org.apcs.ast;
 
-import org.apcs.parser.Environment;
+import org.apcs.inter.Environment;
 
 public interface Value {
 

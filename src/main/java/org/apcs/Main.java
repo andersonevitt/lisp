@@ -17,6 +17,7 @@
 
 package org.apcs;
 
+import org.apcs.inter.Environment;
 import org.apcs.lexer.CharacterStream;
 import org.apcs.lexer.Lexer;
 import org.apcs.parser.Parser;
@@ -28,6 +29,7 @@ public class Main {
         var lexer = new Lexer(new CharacterStream(new FileInputStream("test.lisp")));
 
         var parser = new Parser(lexer);
-        parser.forEachRemaining(System.out::println);
+        var env = new Environment();
+        parser.forEachRemaining((t) -> System.out.println(t.eval(env)));
     }
 }

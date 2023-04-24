@@ -18,7 +18,8 @@
 package org.apcs.lexer;
 
 public final class LeftParen extends Token {
-    LeftParen() {}
+    LeftParen() {
+    }
 
     public Object getValue() {
         return "(";

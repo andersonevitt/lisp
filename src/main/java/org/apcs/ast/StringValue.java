@@ -18,8 +18,8 @@
 package org.apcs.ast;
 
 import lombok.AllArgsConstructor;
+import org.apcs.inter.Environment;
 import org.apcs.lexer.StringToken;
-import org.apcs.parser.Environment;
 
 @AllArgsConstructor
 public class StringValue implements Value {
