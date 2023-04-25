@@ -17,7 +17,7 @@
 
 package org.apcs;
 
-import org.apcs.inter.Environment;
+import org.apcs.std.Environment;
 import org.apcs.lexer.CharacterStream;
 import org.apcs.lexer.Lexer;
 import org.apcs.parser.Parser;
@@ -30,6 +30,6 @@ public class Main {
 
         var parser = new Parser(lexer);
         var env = new Environment();
-        parser.forEachRemaining((t) -> System.out.println(t.eval(env)));
+        parser.forEachRemaining((t) -> t.eval(env));
     }
 }

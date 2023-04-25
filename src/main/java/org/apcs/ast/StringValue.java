@@ -18,7 +18,7 @@
 package org.apcs.ast;
 
 import lombok.AllArgsConstructor;
-import org.apcs.inter.Environment;
+import org.apcs.std.Environment;
 import org.apcs.lexer.StringToken;
 
 @AllArgsConstructor

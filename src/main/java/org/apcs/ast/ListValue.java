@@ -20,8 +20,9 @@ package org.apcs.ast;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import org.apcs.inter.Environment;
+import org.apcs.std.Environment;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
@@ -32,18 +33,18 @@ public class ListValue implements Value {
 
     public String toString() {
         if (values.size() == 0) {
-            return "{}";
+            return "()";
         }
 
         StringBuilder body = new StringBuilder();
-        body.append("{");
+        body.append("(");
 
         for (int i = 0; i < values.size() - 1; i++) {
-            body.append(values.get(i)).append(", ");
+            body.append(values.get(i)).append(" ");
         }
 
         body.append(values.get(values.size() - 1));
-        body.append("}");
+        body.append(")");
 
         return body.toString();
     }
@@ -57,17 +58,25 @@ public class ListValue implements Value {
     public Value eval(Environment env) {
         var newEnv = new Environment(env);
 
-        var func = newEnv.get((String) values.remove(0).getValue());
+        // Make copy to avoid mutation related bugs
+        var func = values.get(0).eval(env);
+        var vals = new ArrayList<>(values);
+        vals.remove(0);
 
-        Value out = null;
+        Value out;
         if (func instanceof Builtin bf) {
             System.out.println("Here");
-            out = bf.apply(env, values.toArray(new Value[2]));
+
+            out = bf.apply(env, vals);
         } else if (func instanceof Lambda l) {
+            System.out.println("Here 2");
             for (int i = 0; i < l.args().size(); i++) {
-                newEnv.set(l.args().get(i), values.get(i));
+                newEnv.set(l.args().get(i), vals.get(i).eval(env));
             }
-            out = evalList(values, env);
+            System.out.println(l.body());
+            out = evalList(l.body(), newEnv);
+        } else {
+            throw new RuntimeException(func + " not callable");
         }
 
         env = newEnv.parent;
@@ -79,6 +88,7 @@ public class ListValue implements Value {
             list.get(i).eval(env);
         }
 
+        System.out.println("Evaluating " + list.get(list.size() - 1));
         return list.get(list.size() - 1).eval(env);
     }
 }

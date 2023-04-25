@@ -20,7 +20,7 @@ package org.apcs.parser;
 import lombok.Getter;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
-import org.apcs.ast.Number;
+import org.apcs.ast.NumberValue;
 import org.apcs.ast.*;
 import org.apcs.lexer.Token;
 import org.apcs.util.PeekableIterator;
@@ -63,7 +63,7 @@ public class Parser implements Iterator<Value> {
 
         if (lexer.peek().isNumber()) {
             log.trace("Parsed number");
-            return new Number((int) lexer.next().getValue());
+            return new NumberValue((int) lexer.next().getValue());
         }
 
         if (lexer.peek().isString()) {

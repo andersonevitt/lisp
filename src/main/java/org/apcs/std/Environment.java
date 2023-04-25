@@ -1,5 +1,6 @@
-package org.apcs.inter;
+package org.apcs.std;
 
+import org.apcs.ast.Builtin;
 import org.apcs.ast.Value;
 
 import java.util.HashMap;
@@ -41,9 +42,13 @@ public class Environment {
         }
     }
 
-    private void standardEnv() {
-        this.values.put("+", new Add());
-        this.values.put("def", new Define());
 
+    private void standardEnv() {
+        this.values.put("+", (Builtin) Core::add);
+        this.values.put("def", (Builtin) Core::def);
+        this.values.put("defun", (Builtin) Core::defun);
+        this.values.put("quote", (Builtin) Core::quote);
+        this.values.put("println", (Builtin) Core::println);
+        this.values.put("lambda", (Builtin) Core::lambda);
     }
 }

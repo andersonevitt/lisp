@@ -17,20 +17,15 @@
 
 package org.apcs.ast;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import org.apcs.inter.Environment;
+import org.apcs.std.Environment;
 
-@Data
-@AllArgsConstructor
-public class Number implements Value {
-    int value;
 
+public record NumberValue(double value) implements Value {
     public String toString() {
-        return Integer.toString(value);
+        return Double.toString(value);
     }
 
-    public Integer getValue() {
+    public Double getValue() {
         return value;
     }
 

@@ -1,6 +1,6 @@
 package org.apcs.ast;
 
-import org.apcs.inter.Environment;
+import org.apcs.std.Environment;
 
 import java.util.List;
 

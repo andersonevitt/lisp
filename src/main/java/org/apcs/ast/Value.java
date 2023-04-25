@@ -17,7 +17,7 @@
 
 package org.apcs.ast;
 
-import org.apcs.inter.Environment;
+import org.apcs.std.Environment;
 
 public interface Value {
 
@@ -26,7 +26,7 @@ public interface Value {
     Value eval(Environment env);
 
     default boolean isNumber() {
-        return this instanceof Number;
+        return this instanceof NumberValue;
     }
 
     default boolean isAtom() {

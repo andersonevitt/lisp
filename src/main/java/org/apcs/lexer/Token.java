@@ -17,7 +17,7 @@
 
 package org.apcs.lexer;
 
-public abstract sealed class Token permits Symbol, LeftParen, NumberToken, RightParen, StringToken {
+public abstract class Token {
 
     public abstract Object getValue();
 

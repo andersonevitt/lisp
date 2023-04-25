@@ -1,8 +1,18 @@
 package org.apcs.ast;
 
-import org.apcs.inter.Environment;
+import org.apcs.std.Environment;
+
+import java.util.List;
 
 public interface Builtin extends Value {
-    Value apply(Environment env, Value... args);
+    Value apply(Environment env, List<Value> args);
+
+    default Object getValue() {
+        return null;
+    }
+
+    default Value eval(Environment env) {
+        return null;
+    }
 
 }
