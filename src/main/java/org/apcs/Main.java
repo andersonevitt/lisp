@@ -19,9 +19,8 @@ package org.apcs;
 
 import org.apcs.lexer.CharacterStream;
 import org.apcs.lexer.Lexer;
-import org.apcs.lexer.Token;
 import org.apcs.parser.Parser;
-import org.apcs.std.Environment;
+import org.apcs.core.Environment;
 
 import java.io.FileInputStream;
 

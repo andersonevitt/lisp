@@ -1,4 +1,4 @@
-package org.apcs.std;
+package org.apcs.core;
 
 public class EvalException extends RuntimeException {
     /**

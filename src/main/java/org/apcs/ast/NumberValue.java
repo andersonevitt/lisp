@@ -17,7 +17,7 @@
 
 package org.apcs.ast;
 
-import org.apcs.std.Environment;
+import org.apcs.core.Environment;
 
 
 public record NumberValue(Double value) implements Value {

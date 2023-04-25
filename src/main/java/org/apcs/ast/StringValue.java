@@ -17,7 +17,7 @@
 
 package org.apcs.ast;
 
-import org.apcs.std.Environment;
+import org.apcs.core.Environment;
 
 public record StringValue(String value) implements Value {
     public String toString() {

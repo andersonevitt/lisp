@@ -17,14 +17,14 @@
 
 package org.apcs.ast;
 
-import org.apcs.std.Environment;
+import org.apcs.core.Environment;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public record ListValue(List<Value> values) implements Value {
     public static ListValue nil() {
-        return new ListValue(new ArrayList<>());
+        return new ListValue(List.of());
     }
 
     public String toString() {
