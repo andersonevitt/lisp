@@ -17,16 +17,12 @@
 
 package org.apcs.util;
 
-import lombok.Getter;
 
 import java.util.Iterator;
 
 public class BufferedPeekableIterator<E> implements PeekableIterator<E> {
-    @Getter
     private final Iterator<? extends E> iterator;
-    @Getter
     private boolean hasPeeked;
-    @Getter
     private E peekedElement;
 
     public BufferedPeekableIterator(Iterator<? extends E> iterator) {

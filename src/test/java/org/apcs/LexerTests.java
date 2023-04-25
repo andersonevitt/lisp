@@ -20,7 +20,6 @@ package org.apcs;
 import org.apcs.lexer.*;
 import org.junit.jupiter.api.Test;
 
-import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,7 +50,7 @@ public class LexerTests {
     void basicTokens() {
         assertMatches("(", getLeftParen());
         assertMatches(")", getRightParen());
-        assertMatches("some", getAtom("some"));
+        assertMatches("some", getSymbol("some"));
         assertMatches("10", getNumber(10));
     }
 
@@ -59,7 +58,7 @@ public class LexerTests {
     void nestedParenthesis() {
         assertMatches("()", getLeftParen(), getRightParen());
         assertMatches("(())", getLeftParen(), getLeftParen(), getRightParen(), getRightParen());
-        assertMatches("(some)", getLeftParen(), getAtom("some"), getRightParen());
-        assertMatches("(some 10)", getLeftParen(), getAtom("some"), getNumber(10), getRightParen());
+        assertMatches("(some)", getLeftParen(), getSymbol("some"), getRightParen());
+        assertMatches("(some 10)", getLeftParen(), getSymbol("some"), getNumber(10), getRightParen());
     }
 }

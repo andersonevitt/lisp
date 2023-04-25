@@ -40,7 +40,7 @@ public class TokenFactory {
         try {
             return getNumber(Integer.parseInt(matched));
         } catch (NumberFormatException e) {
-            return getAtom(matched);
+            return getSymbol(matched);
         }
     }
 
@@ -48,7 +48,7 @@ public class TokenFactory {
         return new Token(TokenType.NUMBER, value);
     }
 
-    public static Token getAtom(String name) {
+    public static Token getSymbol(String name) {
         return new Token(TokenType.SYMBOL, name);
     }
 }

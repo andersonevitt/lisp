@@ -23,11 +23,8 @@ import java.io.*;
 import java.nio.file.Path;
 
 public class CharacterStream implements PeekableIterator<Character> {
-
     private final BufferedReader reader;
-
     private final Position position;
-
 
     public CharacterStream(BufferedReader reader) {
         this.reader = reader;

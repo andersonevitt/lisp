@@ -17,6 +17,7 @@
 
 package org.apcs.lexer;
 
+import org.apcs.util.BufferedPeekableIterator;
 import org.apcs.util.PeekableIterable;
 import org.apcs.util.PeekableIterator;
 
@@ -37,6 +38,7 @@ public class Lexer implements Iterator<Token>, PeekableIterable<Token> {
     @Override
     public boolean hasNext() {
         skipWhitespace();
+
         return iterator.hasNext();
     }
 
@@ -71,7 +73,6 @@ public class Lexer implements Iterator<Token>, PeekableIterable<Token> {
             case ';' -> {
                 while (iterator.peek() != '\n') iterator.next();
 
-
                 // TODO: This could potentially cause a stack overflow in really large numbers and is *slightly*
                 //  inefficient
                 return next();
@@ -100,10 +101,6 @@ public class Lexer implements Iterator<Token>, PeekableIterable<Token> {
     @Override
     public Iterator<Token> iterator() {
         return this;
-    }
-
-    public PeekableIterator<Character> getIterator() {
-        return this.iterator;
     }
 
     public Position getPosition() {
