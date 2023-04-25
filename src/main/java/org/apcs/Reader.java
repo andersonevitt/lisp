@@ -1,9 +1,9 @@
 package org.apcs;
 
 /*
-* Reads lines from stdin
-*
-*/
+ * Reads lines from stdin
+ *
+ */
 public class Reader {
     private final String prompt;
 

@@ -19,8 +19,8 @@ package org.apcs.lexer;
 
 
 public class TokenFactory {
-    private static final Token LEFT_PAREN = new LeftParen();
-    private static final Token RIGHT_PAREN = new RightParen();
+    private static final Token LEFT_PAREN = new Token(TokenType.LEFT_PAREN);
+    private static final Token RIGHT_PAREN = new Token(TokenType.RIGHT_PAREN);
 
 
     public static Token getRightParen() {
@@ -33,7 +33,7 @@ public class TokenFactory {
 
     public static Token getString(String value) {
         // TODO: See if interning would actually yields better performance
-        return new StringToken(value);
+        return new Token(TokenType.STRING, value);
     }
 
     public static Token getAtomOrNumber(String matched) {
@@ -44,11 +44,11 @@ public class TokenFactory {
         }
     }
 
-    public static Token getNumber(int value) {
-        return new NumberToken(value);
+    public static Token getNumber(double value) {
+        return new Token(TokenType.NUMBER, value);
     }
 
     public static Token getAtom(String name) {
-        return new Symbol(name);
+        return new Token(TokenType.SYMBOL, name);
     }
 }

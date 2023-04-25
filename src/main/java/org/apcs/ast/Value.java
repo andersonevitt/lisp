@@ -20,8 +20,7 @@ package org.apcs.ast;
 import org.apcs.std.Environment;
 
 public interface Value {
-
-    Object getValue();
+    Object value();
 
     Value eval(Environment env);
 

@@ -17,26 +17,15 @@
 
 package org.apcs.ast;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
 import org.apcs.std.Environment;
 
-@AllArgsConstructor
-@EqualsAndHashCode
-public class Symbol implements Value {
-    String name;
-
+public record Symbol(String value) implements Value {
     public String toString() {
-        return name;
-    }
-
-    @Override
-    public Object getValue() {
-        return name;
+        return value;
     }
 
     @Override
     public Value eval(Environment env) {
-        return env.get(name);
+        return env.get(value);
     }
 }

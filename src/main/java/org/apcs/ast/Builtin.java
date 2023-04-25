@@ -7,7 +7,7 @@ import java.util.List;
 public interface Builtin extends Value {
     Value apply(Environment env, List<Value> args);
 
-    default Object getValue() {
+    default Object value() {
         return null;
     }
 

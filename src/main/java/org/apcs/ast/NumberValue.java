@@ -20,13 +20,9 @@ package org.apcs.ast;
 import org.apcs.std.Environment;
 
 
-public record NumberValue(double value) implements Value {
+public record NumberValue(Double value) implements Value {
     public String toString() {
         return Double.toString(value);
-    }
-
-    public Double getValue() {
-        return value;
     }
 
     @Override

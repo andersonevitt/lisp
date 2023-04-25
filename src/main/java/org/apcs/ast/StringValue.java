@@ -17,26 +17,11 @@
 
 package org.apcs.ast;
 
-import lombok.AllArgsConstructor;
 import org.apcs.std.Environment;
-import org.apcs.lexer.StringToken;
 
-@AllArgsConstructor
-public class StringValue implements Value {
-    private final String value;
-
-    public boolean equals(StringToken other) {
-        return other.getValue().equals(value);
-    }
-
+public record StringValue(String value) implements Value {
     public String toString() {
         return "\"" + value + "\"";
-    }
-
-    public String getValue() {
-        return value;
-
-
     }
 
     public Value eval(Environment env) {

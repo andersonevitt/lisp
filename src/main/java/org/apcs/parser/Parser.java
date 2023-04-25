@@ -18,10 +18,10 @@
 package org.apcs.parser;
 
 import lombok.Getter;
-import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
-import org.apcs.ast.NumberValue;
 import org.apcs.ast.*;
+import org.apcs.lexer.Lexer;
+import org.apcs.lexer.Position;
 import org.apcs.lexer.Token;
 import org.apcs.util.PeekableIterator;
 
@@ -31,13 +31,14 @@ import java.util.List;
 
 
 @Slf4j
-@ToString
 public class Parser implements Iterator<Value> {
     @Getter
     private final PeekableIterator<Token> lexer;
+    private final Position position;
 
-    public Parser(Iterator<Token> lexer) {
-        this.lexer = PeekableIterator.of(lexer);
+    public Parser(Lexer lexer) {
+        this.position = lexer.getPosition();
+        this.lexer = lexer.peekableIterator();
     }
 
     @Override
@@ -58,16 +59,16 @@ public class Parser implements Iterator<Value> {
 
         if (lexer.peek().isSymbol()) {
             log.trace("Parsed atom");
-            return new Symbol((String) lexer.next().getValue());
+            return new Symbol((String) lexer.next().value());
         }
 
         if (lexer.peek().isNumber()) {
             log.trace("Parsed number");
-            return new NumberValue((int) lexer.next().getValue());
+            return new NumberValue((Double) lexer.next().value());
         }
 
         if (lexer.peek().isString()) {
-            return new StringValue((String) lexer.next().getValue());
+            return new StringValue((String) lexer.next().value());
         }
 
         if (lexer.peek().isLeftParen()) {
@@ -89,5 +90,9 @@ public class Parser implements Iterator<Value> {
 
         log.error("Unable to match token. Peek = {}", lexer.peek());
         throw new IllegalStateException("Unable to match token");
+    }
+
+    public Position getPosition() {
+        return position;
     }
 }

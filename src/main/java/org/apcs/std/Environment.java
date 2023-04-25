@@ -45,6 +45,10 @@ public class Environment {
 
     private void standardEnv() {
         this.values.put("+", (Builtin) Core::add);
+        this.values.put("-", (Builtin) Core::subtract);
+        this.values.put("*", (Builtin) Core::multiply);
+        this.values.put("/", (Builtin) Core::divide);
+
         this.values.put("def", (Builtin) Core::def);
         this.values.put("defun", (Builtin) Core::defun);
         this.values.put("quote", (Builtin) Core::quote);

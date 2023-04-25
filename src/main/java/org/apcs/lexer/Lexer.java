@@ -17,6 +17,7 @@
 
 package org.apcs.lexer;
 
+import org.apcs.util.PeekableIterable;
 import org.apcs.util.PeekableIterator;
 
 import java.util.Iterator;
@@ -24,10 +25,12 @@ import java.util.Iterator;
 import static org.apcs.lexer.TokenFactory.*;
 import static org.apcs.util.CharacterUtils.isWhitespace;
 
-public class Lexer implements Iterator<Token>, Iterable<Token> {
+public class Lexer implements Iterator<Token>, PeekableIterable<Token> {
     private final PeekableIterator<Character> iterator;
+    private final Position position;
 
-    public Lexer(final Iterator<Character> stream) {
+    public Lexer(final CharacterStream stream) {
+        this.position = stream.getPosition();
         this.iterator = PeekableIterator.of(stream);
     }
 
@@ -101,5 +104,9 @@ public class Lexer implements Iterator<Token>, Iterable<Token> {
 
     public PeekableIterator<Character> getIterator() {
         return this.iterator;
+    }
+
+    public Position getPosition() {
+        return position;
     }
 }

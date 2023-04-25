@@ -17,19 +17,15 @@
 
 package org.apcs.ast;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
 import org.apcs.std.Environment;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@AllArgsConstructor
-public class ListValue implements Value {
-    @Getter
-    @Setter
-    private List<Value> values;
+public record ListValue(List<Value> values) implements Value {
+    public static ListValue nil() {
+        return new ListValue(new ArrayList<>());
+    }
 
     public String toString() {
         if (values.size() == 0) {
@@ -50,7 +46,7 @@ public class ListValue implements Value {
     }
 
     @Override
-    public Object getValue() {
+    public Object value() {
         return values;
     }
 
@@ -76,7 +72,7 @@ public class ListValue implements Value {
             System.out.println(l.body());
             out = evalList(l.body(), newEnv);
         } else {
-            throw new RuntimeException(func + " not callable");
+            throw new RuntimeException(func.getClass() + " not callable");
         }
 
         env = newEnv.parent;
