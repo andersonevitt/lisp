@@ -11,7 +11,9 @@ import java.util.List;
 public class Add implements Builtin {
     @Override
     public Value apply(Environment env, List<Value> args) {
-        return new NumberValue(((NumberValue) args.get(0).eval(env)).value() + ((NumberValue) args.get(1).eval(env)).value());
+        var num = args.stream().map((x) -> (Double) x.eval(env).value())
+                .reduce(0.0, Double::sum);
 
+        return new NumberValue(num);
     }
 }

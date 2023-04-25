@@ -26,6 +26,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -79,8 +80,7 @@ public class Parser implements Iterator<Value> {
             }
 
             lexer.next();
-
-            return new ListValue(values);
+            return new ListValue(Collections.unmodifiableList(values));
         }
 
         if (lexer.peek().isRightParen()) {

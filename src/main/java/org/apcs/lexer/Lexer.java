@@ -17,7 +17,6 @@
 
 package org.apcs.lexer;
 
-import org.apcs.util.BufferedPeekableIterator;
 import org.apcs.util.PeekableIterable;
 import org.apcs.util.PeekableIterator;
 

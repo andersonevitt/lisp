@@ -9,23 +9,35 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 
+// TODO: Write documentation and make fields private
+
 public class Environment {
-    public Environment parent;
+    public final Environment parent;
     Map<String, Value> values;
 
     public Environment(Environment parent) {
         this.parent = parent;
         this.values = new HashMap<>();
-
-        fill();
     }
 
     public Environment() {
         this(null);
+        standardEnv();
     }
 
-    public void set(String name, Value value) {
+    // Sets value in current scope
+    public void define(String name, Value value) {
         this.values.put(name, value);
+    }
+
+    // Finds value then sets it
+    public void set(String name, Value value) {
+        Environment env = this.findEnvironment(name);
+        if (env != null && env.values.containsKey(name)) {
+            env.values.put(name, value);
+        } else {
+            throw new RuntimeException(String.format("Unable to find \"%s\"", name));
+        }
     }
 
     Environment findEnvironment(String name) {
@@ -45,7 +57,7 @@ public class Environment {
         }
     }
 
-    private void fill() {
+    private void standardEnv() {
         var reflections = new Reflections("org.apcs.core");
         var clazzes = reflections.getSubTypesOf(Builtin.class);
 

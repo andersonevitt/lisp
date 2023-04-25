@@ -17,10 +17,10 @@
 
 package org.apcs;
 
+import org.apcs.core.Environment;
 import org.apcs.lexer.CharacterStream;
 import org.apcs.lexer.Lexer;
 import org.apcs.parser.Parser;
-import org.apcs.core.Environment;
 
 import java.io.FileInputStream;
 

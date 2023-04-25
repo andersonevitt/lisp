@@ -67,7 +67,7 @@ public record ListValue(List<Value> values) implements Value {
         } else if (func instanceof Lambda l) {
             System.out.println("Here 2");
             for (int i = 0; i < l.args().size(); i++) {
-                newEnv.set(l.args().get(i), vals.get(i).eval(env));
+                newEnv.define(l.args().get(i), vals.get(i).eval(env));
             }
             System.out.println(l.body());
             out = evalList(l.body(), newEnv);

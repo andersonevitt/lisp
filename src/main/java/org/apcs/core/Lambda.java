@@ -11,7 +11,7 @@ import java.util.List;
 public class Lambda implements Builtin {
     @Override
     public Value apply(Environment env, List<Value> args) {
-        env.set((String) args.remove(0).value(), new org.apcs.ast.Lambda(
+        env.define((String) args.remove(0).value(), new org.apcs.ast.Lambda(
                 ((List<Value>) args.remove(0).value())
                         .stream()
                         .map((v) -> (String) v.value()).toList(),
