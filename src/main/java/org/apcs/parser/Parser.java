@@ -17,22 +17,21 @@
 
 package org.apcs.parser;
 
-import lombok.Getter;
-import lombok.extern.slf4j.Slf4j;
 import org.apcs.ast.*;
 import org.apcs.lexer.Lexer;
 import org.apcs.lexer.Position;
 import org.apcs.lexer.Token;
 import org.apcs.util.PeekableIterator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 
-@Slf4j
 public class Parser implements Iterator<Value> {
-    @Getter
+    private static final Logger log = LoggerFactory.getLogger(Parser.class);
     private final PeekableIterator<Token> lexer;
     private final Position position;
 
