@@ -8,4 +8,6 @@ public enum TokenType {
     SYMBOL,
     NUMBER,
     QUOTE,
+    QUASI_QUOTE,
+    UNQUOTE,
 }

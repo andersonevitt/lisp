@@ -79,7 +79,12 @@ public class Parser implements Iterator<Value> {
         } else if (lexer.peek().type() == TokenType.QUOTE) {
             lexer.next();
             return new ListValue(List.of(new Symbol("quote"), parse()));
-
+        } else if (lexer.peek().type() == TokenType.QUASI_QUOTE) {
+            lexer.next();
+            return new ListValue(List.of(new Symbol("quasiquote"), parse()));
+        } else if (lexer.peek().type() == TokenType.UNQUOTE) {
+            lexer.next();
+            return new ListValue(List.of(new Symbol("unquote"), parse()));
         } else if (lexer.peek().isRightParen()) {
             throw new ParserException("Unexcepted right parenthesis at");
         }

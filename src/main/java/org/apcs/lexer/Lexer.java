@@ -82,6 +82,16 @@ public class Lexer implements Iterator<Token>, PeekableIterable<Token> {
                 return next();
             }
 
+            case '`' -> {
+                iterator.next();
+                return new Token(TokenType.QUASI_QUOTE);
+            }
+
+            case ',' -> {
+                iterator.next();
+                return new Token(TokenType.UNQUOTE);
+            }
+
             // Symbol
             default -> {
                 StringBuilder matched = new StringBuilder(8);
