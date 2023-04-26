@@ -15,7 +15,7 @@ public class Subtract implements Builtin {
             return new NumberValue(-(double) args.get(0).value());
         }
 
-        var num = (Double) args.get(0).value() - args.stream().skip(1).map((x) -> (Double) x.eval(env).value())
+        var num = (Double) args.get(0).eval(env).value() - args.stream().skip(1).map((x) -> (Double) x.eval(env).value())
                 .reduce(0.0, Double::sum);
 
         return new NumberValue(num);

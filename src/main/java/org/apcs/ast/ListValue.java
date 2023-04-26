@@ -61,15 +61,11 @@ public record ListValue(List<Value> values) implements Value {
 
         Value out;
         if (func instanceof Builtin bf) {
-            System.out.println("Here");
-
             out = bf.apply(env, vals);
         } else if (func instanceof Lambda l) {
-            System.out.println("Here 2");
             for (int i = 0; i < l.args().size(); i++) {
                 newEnv.define(l.args().get(i), vals.get(i).eval(env));
             }
-            System.out.println(l.body());
             out = evalList(l.body(), newEnv);
         } else {
             throw new RuntimeException(func.getClass() + " not callable");
@@ -83,8 +79,6 @@ public record ListValue(List<Value> values) implements Value {
         for (int i = 0; i < list.size() - 1; i++) {
             list.get(i).eval(env);
         }
-
-        System.out.println("Evaluating " + list.get(list.size() - 1));
         return list.get(list.size() - 1).eval(env);
     }
 }

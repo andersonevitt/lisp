@@ -37,6 +37,12 @@ public class TokenFactory {
     }
 
     public static Token getAtomOrNumber(String matched) {
+        if ("true".equals(matched)) {
+            return new Token(TokenType.BOOL, true);
+        } else if ("false".equals(matched)) {
+            return new Token(TokenType.BOOL, false);
+        }
+
         try {
             return getNumber(Integer.parseInt(matched));
         } catch (NumberFormatException e) {

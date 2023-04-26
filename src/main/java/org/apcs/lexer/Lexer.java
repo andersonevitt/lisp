@@ -56,6 +56,11 @@ public class Lexer implements Iterator<Token>, PeekableIterable<Token> {
                 return getRightParen();
             }
 
+            case '\'' -> {
+                iterator.next();
+                return new Token(TokenType.QUOTE);
+            }
+
             case '\"' -> {
                 iterator.next();
                 StringBuilder matched = new StringBuilder();
@@ -85,7 +90,7 @@ public class Lexer implements Iterator<Token>, PeekableIterable<Token> {
                     matched.append(iterator.next());
                 }
 
-                return getAtomOrNumber(matched.toString().intern());
+                return getAtomOrNumber(matched.toString());
             }
         }
     }

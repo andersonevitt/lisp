@@ -21,6 +21,7 @@ import org.apcs.ast.*;
 import org.apcs.lexer.Lexer;
 import org.apcs.lexer.Position;
 import org.apcs.lexer.Token;
+import org.apcs.lexer.TokenType;
 import org.apcs.util.PeekableIterator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -55,23 +56,17 @@ public class Parser implements Iterator<Value> {
         if (!lexer.hasNext()) {
             log.error("No more tokens");
             throw new ParserException("No more tokens");
-        }
-
-        if (lexer.peek().isSymbol()) {
+        } else if (lexer.peek().isSymbol()) {
             log.trace("Parsed atom");
             return new Symbol((String) lexer.next().value());
-        }
-
-        if (lexer.peek().isNumber()) {
+        } else if (lexer.peek().isNumber()) {
             log.trace("Parsed number");
             return new NumberValue((Double) lexer.next().value());
-        }
-
-        if (lexer.peek().isString()) {
+        } else if (lexer.peek().type() == TokenType.BOOL) {
+            return new Bool((boolean) lexer.next().value());
+        } else if (lexer.peek().isString()) {
             return new StringValue((String) lexer.next().value());
-        }
-
-        if (lexer.peek().isLeftParen()) {
+        } else if (lexer.peek().isLeftParen()) {
             List<Value> values = new ArrayList<>();
             lexer.next();
 
@@ -81,11 +76,14 @@ public class Parser implements Iterator<Value> {
 
             lexer.next();
             return new ListValue(Collections.unmodifiableList(values));
-        }
+        } else if (lexer.peek().type() == TokenType.QUOTE) {
+            lexer.next();
+            return new ListValue(List.of(new Symbol("quote"), parse()));
 
-        if (lexer.peek().isRightParen()) {
+        } else if (lexer.peek().isRightParen()) {
             throw new ParserException("Unexcepted right parenthesis at");
         }
+
 
         log.error("Unable to match token. Peek = {}", lexer.peek());
         throw new IllegalStateException("Unable to match token");
