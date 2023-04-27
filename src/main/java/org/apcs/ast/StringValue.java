@@ -21,7 +21,7 @@ import org.apcs.core.Environment;
 
 public record StringValue(String value) implements Value {
     public String toString() {
-        return "\"" + value + "\"";
+        return value;
     }
 
     public Value eval(Environment env) {
