@@ -1,7 +1,7 @@
 package org.apcs.core;
 
-import org.apcs.ast.*;
 import org.apcs.ast.Lambda;
+import org.apcs.ast.*;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import java.util.List;
 public class Defun implements Builtin {
     @Override
     public Value apply(Environment env, List<Value> args) {
-                env.define((String) args.remove(0).value(), new Lambda(
+        env.define((String) args.remove(0).value(), new Lambda(
                 ((List<Value>) args.remove(0).value())
                         .stream()
                         .map((v) -> (String) v.value()).toList(), args));

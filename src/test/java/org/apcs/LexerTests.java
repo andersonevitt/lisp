@@ -17,14 +17,16 @@
 
 package org.apcs;
 
-import org.apcs.lexer.*;
+import org.apcs.lexer.CharacterStream;
+import org.apcs.lexer.Lexer;
+import org.apcs.lexer.Token;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.apcs.lexer.TokenFactory.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LexerTests {
 

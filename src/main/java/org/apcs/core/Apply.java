@@ -5,7 +5,6 @@ import org.apcs.ast.Define;
 import org.apcs.ast.ListValue;
 import org.apcs.ast.Value;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Define("apply")

@@ -2,7 +2,6 @@ package org.apcs.core;
 
 import org.apcs.ast.Builtin;
 import org.apcs.ast.Define;
-import org.apcs.ast.ListValue;
 import org.apcs.ast.Value;
 
 import java.util.List;
