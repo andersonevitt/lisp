@@ -17,7 +17,6 @@
 
 package org.apcs.lexer;
 
-// TODO: Add copy constructor
 public class Position {
     private int line;
     private int column;

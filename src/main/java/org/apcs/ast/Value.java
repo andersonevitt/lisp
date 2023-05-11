@@ -22,7 +22,9 @@ import org.apcs.core.Environment;
 public interface Value {
     Object value();
 
-    Value eval(Environment env);
+    default Value eval(Environment env) {
+        return this;
+    }
 
     default boolean isNumber() {
         return this instanceof NumberValue;

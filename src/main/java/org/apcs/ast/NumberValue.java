@@ -17,16 +17,8 @@
 
 package org.apcs.ast;
 
-import org.apcs.core.Environment;
-
-
 public record NumberValue(Double value) implements Value {
     public String toString() {
         return Double.toString(value);
-    }
-
-    @Override
-    public Value eval(Environment env) {
-        return this;
     }
 }

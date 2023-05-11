@@ -8,11 +8,6 @@ public interface Builtin extends Value {
     Value apply(Environment env, List<Value> args);
 
     default Object value() {
-        return null;
+        return this;
     }
-
-    default Value eval(Environment env) {
-        return null;
-    }
-
 }

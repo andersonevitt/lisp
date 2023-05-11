@@ -23,6 +23,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public record ListValue(List<Value> values) implements Value {
+    public ListValue(Value... values) {
+        this(List.of(values));
+    }
+
     public static ListValue nil() {
         return new ListValue(List.of());
     }

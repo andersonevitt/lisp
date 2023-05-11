@@ -57,6 +57,7 @@ public class Environment {
         }
     }
 
+    // TODO: This may be a bad idea
     private void standardEnv() {
         var reflections = new Reflections("org.apcs.core");
         var clazzes = reflections.getSubTypesOf(Builtin.class);

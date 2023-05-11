@@ -17,12 +17,11 @@
 
 package org.apcs.lexer;
 
-import org.apcs.util.PeekableIterator;
-
 import java.io.*;
 import java.nio.file.Path;
+import java.util.Iterator;
 
-public class CharacterStream implements PeekableIterator<Character> {
+public class CharacterStream implements Iterator<Character> {
     private final BufferedReader reader;
     private final Position position;
 
@@ -72,9 +71,8 @@ public class CharacterStream implements PeekableIterator<Character> {
         try {
             char value = (char) reader.read();
 
+            // TODO: Multi platform line endings
             if (value == '\n')
-                position.nextLine();
-            else if (value == '\r' && peek() == '\n')
                 position.nextLine();
 
             position.nextColumn();
@@ -82,20 +80,6 @@ public class CharacterStream implements PeekableIterator<Character> {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    @Override
-    public Character peek() {
-        try {
-            reader.mark(1);
-            int value = reader.read();
-            reader.reset();
-            return (char) value;
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-
     }
 
     public BufferedReader getReader() {

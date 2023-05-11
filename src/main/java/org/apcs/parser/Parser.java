@@ -63,7 +63,7 @@ public class Parser implements Iterator<Value> {
             log.trace("Parsed number");
             return new NumberValue((Double) lexer.next().value());
         } else if (lexer.peek().type() == TokenType.BOOL) {
-            return new Bool((boolean) lexer.next().value());
+            return new BoolValue((boolean) lexer.next().value());
         } else if (lexer.peek().isString()) {
             return new StringValue((String) lexer.next().value());
         } else if (lexer.peek().isLeftParen()) {
@@ -78,17 +78,16 @@ public class Parser implements Iterator<Value> {
             return new ListValue(Collections.unmodifiableList(values));
         } else if (lexer.peek().type() == TokenType.QUOTE) {
             lexer.next();
-            return new ListValue(List.of(new Symbol("quote"), parse()));
+            return new ListValue(new Symbol("quote"), parse());
         } else if (lexer.peek().type() == TokenType.QUASI_QUOTE) {
             lexer.next();
-            return new ListValue(List.of(new Symbol("quasiquote"), parse()));
+            return new ListValue(new Symbol("quasiquote"), parse());
         } else if (lexer.peek().type() == TokenType.UNQUOTE) {
             lexer.next();
-            return new ListValue(List.of(new Symbol("unquote"), parse()));
+            return new ListValue(new Symbol("unquote"), parse());
         } else if (lexer.peek().isRightParen()) {
             throw new ParserException("Unexcepted right parenthesis at");
         }
-
 
         log.error("Unable to match token. Peek = {}", lexer.peek());
         throw new IllegalStateException("Unable to match token");
