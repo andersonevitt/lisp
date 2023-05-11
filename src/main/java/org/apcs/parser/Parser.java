@@ -70,12 +70,12 @@ public class Parser implements Iterator<Value> {
             List<Value> values = new ArrayList<>();
             lexer.next();
 
-            while (!lexer.peek().isRightParen() && lexer.hasNext()) {
+            while (lexer.hasNext() && !lexer.peek().isRightParen()) {
                 values.add(parse());
             }
 
             lexer.next();
-            return new ListValue(Collections.unmodifiableList(values));
+            return new ListValue(values);
         } else if (lexer.peek().type() == TokenType.QUOTE) {
             lexer.next();
             return new ListValue(new Symbol("quote"), parse());
