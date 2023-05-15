@@ -83,10 +83,10 @@ public class CharacterStream implements Iterator<Character> {
     }
 
     public BufferedReader getReader() {
-        return this.reader;
+        return reader;
     }
 
     public Position getPosition() {
-        return this.position;
+        return position;
     }
 }
