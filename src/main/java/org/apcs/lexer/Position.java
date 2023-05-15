@@ -17,8 +17,6 @@
 
 package org.apcs.lexer;
 
-import java.util.Optional;
-
 public class Position {
     private String file;
     private int line;
