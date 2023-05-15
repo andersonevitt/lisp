@@ -13,7 +13,7 @@ import java.util.Map;
 
 public class Environment {
     public final Environment parent;
-    Map<String, Value> values;
+    private final Map<String, Value> values;
 
     public Environment(Environment parent) {
         this.parent = parent;

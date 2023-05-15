@@ -1,6 +1,5 @@
 package org.apcs.lexer;
 
-// TODO: Finish to improve performance/type safety
 public record Token(TokenType type, Object value) {
     public Token(TokenType type) {
         this(type, null);

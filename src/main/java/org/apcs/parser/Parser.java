@@ -31,6 +31,7 @@ import java.util.Iterator;
 import java.util.List;
 
 
+@SuppressWarnings("unused")
 public class Parser implements Iterator<Value> {
     private static final Logger log = LoggerFactory.getLogger(Parser.class);
     private final PeekableIterator<Token> lexer;

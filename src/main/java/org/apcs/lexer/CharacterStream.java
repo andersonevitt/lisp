@@ -21,6 +21,7 @@ import java.io.*;
 import java.nio.file.Path;
 import java.util.Iterator;
 
+@SuppressWarnings("unused")
 public class CharacterStream implements Iterator<Character> {
     private final BufferedReader reader;
     private final Position position;

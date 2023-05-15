@@ -17,6 +17,11 @@
 
 package org.apcs.ast;
 
+/**
+ *
+ *
+ * @param value
+ */
 public record NumberValue(Double value) implements Value {
     public String toString() {
         return Double.toString(value);

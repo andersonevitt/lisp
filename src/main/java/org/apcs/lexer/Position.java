@@ -19,7 +19,6 @@ package org.apcs.lexer;
 import java.util.Objects;
 
 public class Position {
-    //declares instance data
     private String file;
     private int line;
     private int column;
@@ -51,9 +50,24 @@ public class Position {
         column += 1;
     }
 
-    public boolean equals(final Position o) {
-        // Object.equals for null safe check
-        return this.line == o.line && this.column == o.column && Objects.equals(this.file, o.file);
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Position position = (Position) o;
+
+        if (getLine() != position.getLine()) return false;
+        if (getColumn() != position.getColumn()) return false;
+        return Objects.equals(file, position.file);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = file != null ? file.hashCode() : 0;
+        result = 31 * result + getLine();
+        result = 31 * result + getColumn();
+        return result;
     }
 
     //returns position of line
@@ -69,9 +83,11 @@ public class Position {
     //returns position if file is not null
     @Override
     public String toString() {
-        if (file == null)
-            return line + ":" + column;
-        else
-            return file + ":" + line + column;
+        var str = line + ":" + column;
+
+        if (file != null)
+            str = file + ":" + str;
+
+        return str;
     }
 }
