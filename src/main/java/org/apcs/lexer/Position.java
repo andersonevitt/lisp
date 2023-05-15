@@ -17,6 +17,8 @@
 
 package org.apcs.lexer;
 
+import java.util.Objects;
+
 public class Position {
     private String file;
     private int line;
@@ -47,7 +49,8 @@ public class Position {
     }
 
     public boolean equals(final Position o) {
-        return this.line == o.line && this.column == o.column;
+        // Object.equals for null safe check
+        return this.line == o.line && this.column == o.column && Objects.equals(this.file, o.file);
     }
 
     public int getLine() {
