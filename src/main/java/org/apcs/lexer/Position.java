@@ -16,18 +16,20 @@
  */
 
 package org.apcs.lexer;
-
 import java.util.Objects;
 
 public class Position {
+    //instance data
     private String file;
     private int line;
     private int column;
 
+    //default constructor
     public Position() {
         this(1, 1);
     }
 
+    //Position 1-arg constructor
     public Position(String fileName) {
         this(1, 1);
         file = fileName;
@@ -39,11 +41,13 @@ public class Position {
         file = null;
     }
 
+    //method moves position to the next line
     public void nextLine() {
         line += 1;
         column = 1;
     }
 
+    //method moves column position forward
     public void nextColumn() {
         column += 1;
     }
@@ -53,14 +57,17 @@ public class Position {
         return this.line == o.line && this.column == o.column && Objects.equals(this.file, o.file);
     }
 
+    //returns position of line
     public int getLine() {
         return this.line;
     }
 
+    //returns position of column
     public int getColumn() {
         return this.column;
     }
 
+    //returns position if file is not null
     @Override
     public String toString() {
         if (file == null)
