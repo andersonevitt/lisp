@@ -30,11 +30,7 @@ public class Main {
 
         var parser = new Parser(lexer);
         var env = new Environment();
-        try {
-            parser.forEachRemaining((t) -> t.eval(env));
-        } catch (Exception e) {
-            System.out.println("Error at " + parser.getPosition());
-        }
 
+        parser.forEachRemaining((t) -> t.eval(env));
     }
 }
