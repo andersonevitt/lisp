@@ -20,25 +20,24 @@ package org.apcs.lexer;
 import java.io.*;
 import java.nio.file.Path;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 @SuppressWarnings("unused")
 public class CharacterStream implements Iterator<Character> {
     private final BufferedReader reader;
-    private final Position position;
+    private Position position;
 
-    public CharacterStream(BufferedReader reader) {
-        this.reader = reader;
+    public CharacterStream(Reader reader) {
+        this.reader = new BufferedReader(reader);
         this.position = new Position();
     }
 
     public CharacterStream(InputStream stream) {
-        this.reader = new BufferedReader(new InputStreamReader(stream));
-        this.position = new Position();
+        this(new InputStreamReader(stream));
     }
 
     public CharacterStream(String source) {
-        this.reader = new BufferedReader(new StringReader(source));
-        this.position = new Position();
+        this(new StringReader(source));
     }
 
     public CharacterStream(Path input) throws FileNotFoundException {
@@ -46,7 +45,7 @@ public class CharacterStream implements Iterator<Character> {
     }
 
     public CharacterStream(File input) throws FileNotFoundException {
-        this.reader = new BufferedReader(new InputStreamReader(new FileInputStream(input)));
+        this(new FileInputStream(input));
         this.position = new Position(input.getName());
     }
 
@@ -68,7 +67,7 @@ public class CharacterStream implements Iterator<Character> {
     }
 
     @Override
-    public Character next() {
+    public Character next() throws NoSuchElementException {
         try {
             char value = (char) reader.read();
 
@@ -76,11 +75,10 @@ public class CharacterStream implements Iterator<Character> {
             if (value == '\n')
                 position.nextLine();
 
-
             position.nextColumn();
             return value;
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new NoSuchElementException();
         }
     }
 
