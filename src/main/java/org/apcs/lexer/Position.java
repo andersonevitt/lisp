@@ -19,7 +19,7 @@ package org.apcs.lexer;
 import java.util.Objects;
 
 public class Position {
-    //instance data
+    //declares instance data
     private String file;
     private int line;
     private int column;
@@ -29,7 +29,6 @@ public class Position {
         this(1, 1);
     }
 
-    //Position 1-arg constructor
     public Position(String fileName) {
         this(1, 1);
         file = fileName;
