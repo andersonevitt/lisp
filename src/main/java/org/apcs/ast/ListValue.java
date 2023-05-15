@@ -54,6 +54,14 @@ public record ListValue(List<Value> values) implements Value {
         return values;
     }
 
+    /**
+     * Evaluates a list within the given environment.
+     * This should call the first item in the list with the rest of the list
+     * as the function parameters.
+     *
+     * @param env The environment in which it should be evaluated
+     * @return The evaluated form of the list
+     */
     @Override
     public Value eval(Environment env) {
         var newEnv = new Environment(env);

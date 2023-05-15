@@ -24,6 +24,13 @@ public record Symbol(String value) implements Value {
         return value;
     }
 
+    /**
+     * Returns the evaluated form of the value.
+     * This gets the value held in the environment which matches the name of the symbol
+     *
+     * @param env The environment in which it should be evaluated
+     * @return the evaluated form the environment
+     */
     @Override
     public Value eval(Environment env) {
         return env.get(value);

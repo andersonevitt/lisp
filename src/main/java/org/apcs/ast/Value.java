@@ -20,17 +20,20 @@ package org.apcs.ast;
 import org.apcs.core.Environment;
 
 public interface Value {
+    /**
+     * Returns the Java representation of the Value
+     * @return the Java representation of the Value
+     */
     Object value();
 
+    /**
+     * Returns the evaluated form of the value.
+     * By default, it should not do anything and simply evaluate to itself
+     *
+     * @param env The environment in which it should be evaluated
+     * @return the evaluated form
+     */
     default Value eval(Environment env) {
         return this;
-    }
-
-    default boolean isList() {
-        return this instanceof ListValue;
-    }
-
-    default boolean isString() {
-        return this instanceof StringValue;
     }
 }

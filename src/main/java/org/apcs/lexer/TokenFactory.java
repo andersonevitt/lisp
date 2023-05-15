@@ -22,7 +22,6 @@ public class TokenFactory {
     private static final Token LEFT_PAREN = new Token(TokenType.LEFT_PAREN);
     private static final Token RIGHT_PAREN = new Token(TokenType.RIGHT_PAREN);
 
-
     public static Token getRightParen() {
         return RIGHT_PAREN;
     }

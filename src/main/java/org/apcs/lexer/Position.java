@@ -40,13 +40,13 @@ public class Position {
         file = null;
     }
 
-    //method moves position to the next line
+    // method moves position to the next line
     public void nextLine() {
         line += 1;
         column = 1;
     }
 
-    //method moves column position forward
+    // method moves column position forward
     public void nextColumn() {
         column += 1;
     }
