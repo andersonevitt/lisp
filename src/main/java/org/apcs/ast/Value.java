@@ -26,14 +26,6 @@ public interface Value {
         return this;
     }
 
-    default boolean isNumber() {
-        return this instanceof NumberValue;
-    }
-
-    default boolean isAtom() {
-        return this instanceof Symbol;
-    }
-
     default boolean isList() {
         return this instanceof ListValue;
     }

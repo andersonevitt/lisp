@@ -11,6 +11,7 @@ import java.util.List;
 public class Rest implements Builtin {
     @Override
     public Value apply(Environment env, List<Value> args) {
-        return new ListValue(((List<Value>) args.get(0).eval(env).value()).subList(1, args.size()));
+        var list = (List<Value>) args.get(0).eval(env).value();
+        return new ListValue(list.subList(1, list.size()));
     }
 }
