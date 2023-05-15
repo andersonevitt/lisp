@@ -17,22 +17,31 @@
 
 package org.apcs.lexer;
 
+import java.util.Optional;
+
 public class Position {
+    private String file;
     private int line;
     private int column;
 
     public Position() {
-        line = 1;
-        column = 1;
+        this(1, 1);
+    }
+
+    public Position(String fileName) {
+        this(1, 1);
+        file = fileName;
     }
 
     public Position(int line, int column) {
         this.line = line;
         this.column = column;
+        file = null;
     }
 
     public void nextLine() {
         line += 1;
+        column = 1;
     }
 
     public void nextColumn() {
@@ -43,25 +52,19 @@ public class Position {
         return this.line == o.line && this.column == o.column;
     }
 
-    public String toString() {
-        return "Position(line=" + this.line + ", column=" + this.column + ")";
-    }
-
     public int getLine() {
         return this.line;
-    }
-
-    public Position setLine(int line) {
-        this.line = line;
-        return this;
     }
 
     public int getColumn() {
         return this.column;
     }
 
-    public Position setColumn(int column) {
-        this.column = column;
-        return this;
+    @Override
+    public String toString() {
+        if (file == null)
+            return line + ":" + column;
+        else
+            return file + ":" + line + column;
     }
 }

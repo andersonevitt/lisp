@@ -22,14 +22,19 @@ import org.apcs.lexer.CharacterStream;
 import org.apcs.lexer.Lexer;
 import org.apcs.parser.Parser;
 
-import java.io.FileInputStream;
+import java.io.File;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        var lexer = new Lexer(new CharacterStream(new FileInputStream("test.lisp")));
+        var lexer = new Lexer(new CharacterStream(new File("test.lisp")));
 
         var parser = new Parser(lexer);
         var env = new Environment();
-        parser.forEachRemaining((t) -> t.eval(env));
+        try {
+            parser.forEachRemaining((t) -> t.eval(env));
+        } catch (Exception e) {
+            System.out.println("Error at " + parser.getPosition());
+        }
+
     }
 }

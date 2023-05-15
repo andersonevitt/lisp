@@ -46,7 +46,7 @@ public class CharacterStream implements Iterator<Character> {
 
     public CharacterStream(File input) throws FileNotFoundException {
         this.reader = new BufferedReader(new InputStreamReader(new FileInputStream(input)));
-        this.position = new Position();
+        this.position = new Position(input.getName());
     }
 
     @Override
@@ -74,6 +74,7 @@ public class CharacterStream implements Iterator<Character> {
             // TODO: Multi platform line endings
             if (value == '\n')
                 position.nextLine();
+
 
             position.nextColumn();
             return value;

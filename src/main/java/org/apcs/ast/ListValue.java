@@ -59,30 +59,30 @@ public record ListValue(List<Value> values) implements Value {
         var newEnv = new Environment(env);
 
         // Make copy to avoid mutation related bugs
+        // TODO: remove unnecessary copy of array for performance reasons?
         var func = values.get(0).eval(env);
-        var vals = new ArrayList<>(values);
-        vals.remove(0);
+        var vals = new ArrayList<>(values.stream().skip(1).toList());
 
-        Value out;
         if (func instanceof Builtin bf) {
-            out = bf.apply(env, vals);
+            return bf.apply(env, vals);
         } else if (func instanceof Lambda l) {
-            for (int i = 0; i < l.args().size(); i++) {
+            assert l.args().size() == vals.size();
+
+            for (int i = 0; i < l.args().size(); i += 1) {
                 newEnv.define(l.args().get(i), vals.get(i).eval(env));
             }
-            out = evalList(l.body(), newEnv);
-        } else {
-            throw new RuntimeException(func.getClass() + " not callable");
-        }
 
-        env = newEnv.parent;
-        return out;
+            return evalList(l.body(), newEnv);
+        } else {
+            throw new RuntimeException(func.getClass() + " not callable: ");
+        }
     }
 
     public Value evalList(List<Value> list, Environment env) {
-        for (int i = 0; i < list.size() - 1; i++) {
+        for (int i = 0; i < list.size() - 1; i += 1) {
             list.get(i).eval(env);
         }
+
         return list.get(list.size() - 1).eval(env);
     }
 }

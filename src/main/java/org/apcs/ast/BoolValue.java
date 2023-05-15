@@ -1,3 +1,4 @@
 package org.apcs.ast;
 
-public record BoolValue(Boolean value) implements Value {}
+public record BoolValue(Boolean value) implements Value {
+}

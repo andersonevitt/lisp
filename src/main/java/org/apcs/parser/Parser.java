@@ -27,7 +27,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -86,7 +85,7 @@ public class Parser implements Iterator<Value> {
             lexer.next();
             return new ListValue(new Symbol("unquote"), parse());
         } else if (lexer.peek().isRightParen()) {
-            throw new ParserException("Unexcepted right parenthesis at");
+            throw new ParserException("Unexcepted right parenthesis at " + position);
         }
 
         log.error("Unable to match token. Peek = {}", lexer.peek());
