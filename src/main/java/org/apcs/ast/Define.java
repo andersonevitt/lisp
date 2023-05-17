@@ -8,5 +8,10 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 public @interface Define {
+    /**
+     * The name of the builtin. This will define the method in the environment for you
+     *
+     * @return the name of the function
+     */
     String value();
 }
