@@ -28,7 +28,9 @@ public class Lexer implements Iterator<Token>, PeekableIterable<Token> {
     private final PeekableIterator<Character> iterator;
     private final Position position;
 
-    /** Constructs Lexer with position from
+    /**
+     * Constructs Lexer with position from
+     *
      * @param stream
      */
     public Lexer(final CharacterStream stream) {
@@ -36,8 +38,10 @@ public class Lexer implements Iterator<Token>, PeekableIterable<Token> {
         this.iterator = PeekableIterator.of(stream);
     }
 
-    /** Returns true or false in the instance
-     *  that the iterator contains a value
+    /**
+     * Returns true or false in the instance
+     * that the iterator contains a value
+     *
      * @return whether the next space is full or empty
      */
     @Override
@@ -47,10 +51,12 @@ public class Lexer implements Iterator<Token>, PeekableIterable<Token> {
         return iterator.hasNext();
     }
 
-    /** Checks the value of the position that the lexer is at.
-     *  Checks if the value is a left parentheses, right parentheses, or other token
-     *  Default case matches symbol or number while there is no right parentheses
-     *  @return the current token
+    /**
+     * Checks the value of the position that the lexer is at.
+     * Checks if the value is a left parentheses, right parentheses, or other token
+     * Default case matches symbol or number while there is no right parentheses
+     *
+     * @return the current token
      */
     @Override
     public Token next() {
@@ -116,7 +122,8 @@ public class Lexer implements Iterator<Token>, PeekableIterable<Token> {
         }
     }
 
-    /** Lexer continues to move on to the next space
+    /**
+     * Lexer continues to move on to the next space
      */
     private void skipWhitespace() {
         while (iterator.hasNext() && Character.isWhitespace(iterator.peek())) {
@@ -129,7 +136,9 @@ public class Lexer implements Iterator<Token>, PeekableIterable<Token> {
         return this;
     }
 
-    /** Returns the position of lexer
+    /**
+     * Returns the position of lexer
+     *
      * @return the line and column
      */
     public Position getPosition() {
