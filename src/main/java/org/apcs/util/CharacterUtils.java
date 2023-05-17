@@ -17,6 +17,7 @@
 
 package org.apcs.util;
 
+// TODO: Delete class as it is useless
 public final class CharacterUtils {
 
     public static boolean isWhitespace(char ch) {

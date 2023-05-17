@@ -24,6 +24,7 @@ import java.util.List;
 public record ListValue(List<Value> values) implements Value {
     /**
      * Returns a new list from all of thee arguments
+     *
      * @param values the lisp values to construct the list from
      */
     public ListValue(Value... values) {
@@ -98,7 +99,7 @@ public record ListValue(List<Value> values) implements Value {
 
             return evalList(l.body(), newEnv);
         } else {
-            throw new RuntimeException(func.getClass() + " not callable: ");
+            throw new RuntimeException(func.getClass() + " is not callable: ");
         }
     }
 
