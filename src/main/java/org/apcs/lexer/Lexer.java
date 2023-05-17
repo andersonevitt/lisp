@@ -28,11 +28,18 @@ public class Lexer implements Iterator<Token>, PeekableIterable<Token> {
     private final PeekableIterator<Character> iterator;
     private final Position position;
 
+    /** Constructs Lexer with position from
+     * @param stream
+     */
     public Lexer(final CharacterStream stream) {
         this.position = stream.getPosition();
         this.iterator = PeekableIterator.of(stream);
     }
 
+    /** Returns true or false in the instance
+     *  that the iterator contains a value
+     * @return whether the next space is full or empty
+     */
     @Override
     public boolean hasNext() {
         skipWhitespace();
@@ -40,6 +47,11 @@ public class Lexer implements Iterator<Token>, PeekableIterable<Token> {
         return iterator.hasNext();
     }
 
+    /** Checks the value of the position that the lexer is at.
+     *  Checks if the value is a left parentheses, right parentheses, or other token
+     *  Default case matches symbol or number while there is no right parentheses
+     *  @return the current token
+     */
     @Override
     public Token next() {
         skipWhitespace();
@@ -104,18 +116,22 @@ public class Lexer implements Iterator<Token>, PeekableIterable<Token> {
         }
     }
 
+    /** Lexer continues to move on to the next space
+     */
     private void skipWhitespace() {
         while (iterator.hasNext() && Character.isWhitespace(iterator.peek())) {
             iterator.next();
         }
     }
 
-    // TODO: This might be a bad idea
     @Override
     public Iterator<Token> iterator() {
         return this;
     }
 
+    /** Returns the position of lexer
+     * @return the line and column
+     */
     public Position getPosition() {
         return position;
     }
