@@ -24,7 +24,6 @@ public class Position {
     private int line;
     private int column;
 
-    //default constructor
     public Position() {
         this(1, 1);
     }
@@ -33,23 +32,34 @@ public class Position {
         this(1, 1, fileName);
     }
 
+    /** constructor in the case where file is not null
+     * @param line
+     * @param column
+     * @param fileName
+     */
     public Position(int line, int column, String fileName) {
         this.line = line;
         this.column = column;
         this.file = fileName;
     }
 
+    /** constructor in the case that the file is null
+     * @param line
+     * @param column
+     */
     public Position(int line, int column) {
         this(line, column, null);
     }
 
-    // method moves position to the next line
+    /** method moves position to the next line
+     */
     public void nextLine() {
         line += 1;
         column = 1;
     }
 
-    // method moves column position forward
+    /**method moves column position forward
+     */
     public void nextColumn() {
         column += 1;
     }
@@ -74,17 +84,25 @@ public class Position {
         return result;
     }
 
-    //returns position of line
+    /** Returns the integer representing the position of the current line.
+     * @return position of line
+     */
     public int getLine() {
         return this.line;
     }
 
-    //returns position of column
+    /** Returns the integer representing the position of the current column.
+     * @return position of column
+     */
     public int getColumn() {
         return this.column;
     }
 
-    //returns position if file is not null
+    /** Returns the line and column if the file is null.
+     *  If the file is null, the file is returned in addition
+     *  to the line and column
+     * @return the value of str
+     */
     @Override
     public String toString() {
         var str = line + ":" + column;

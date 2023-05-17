@@ -15,6 +15,7 @@ public class Environment {
     public final Environment parent;
     private final Map<String, Value> values;
 
+    // Constructor with 1-arg for parent. Creates a new HashMap.
     public Environment(Environment parent) {
         this.parent = parent;
         this.values = new HashMap<>();
@@ -48,6 +49,7 @@ public class Environment {
         return env;
     }
 
+    //
     public Value get(String name) {
         Environment env = this.findEnvironment(name);
         if (env != null && env.values.containsKey(name)) {
