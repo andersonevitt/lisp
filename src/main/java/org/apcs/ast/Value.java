@@ -22,6 +22,7 @@ import org.apcs.core.Environment;
 public interface Value {
     /**
      * Returns the Java representation of the Value
+     *
      * @return the Java representation of the Value
      */
     Object value();

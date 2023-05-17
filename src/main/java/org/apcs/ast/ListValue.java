@@ -32,7 +32,7 @@ public record ListValue(List<Value> values) implements Value {
     }
 
     public String toString() {
-        if (values.size() == 0) {
+        if (values.isEmpty()) {
             return "()";
         }
 
@@ -69,7 +69,7 @@ public record ListValue(List<Value> values) implements Value {
         // Make copy to avoid mutation related bugs
         // TODO: remove unnecessary copy of array for performance reasons?
         var func = values.get(0).eval(env);
-        var vals = new ArrayList<>(values.stream().skip(1).toList());
+        var vals = values.stream().skip(1).toList();
 
         if (func instanceof Builtin bf) {
             return bf.apply(env, vals);

@@ -16,6 +16,7 @@
  */
 
 package org.apcs.lexer;
+
 import java.util.Objects;
 
 public class Position {
@@ -29,14 +30,17 @@ public class Position {
     }
 
     public Position(String fileName) {
-        this(1, 1);
-        file = fileName;
+        this(1, 1, fileName);
+    }
+
+    public Position(int line, int column, String fileName) {
+        this.line = line;
+        this.column = column;
+        this.file = fileName;
     }
 
     public Position(int line, int column) {
-        this.line = line;
-        this.column = column;
-        file = null;
+        this(line, column, null);
     }
 
     // method moves position to the next line
