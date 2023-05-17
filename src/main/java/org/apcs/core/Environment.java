@@ -71,7 +71,7 @@ public class Environment {
 
                 // If it has the @Define annotation use that, otherwise use value() for name
                 if (defInstance == null) {
-                    this.values.put((String) instance.value(), instance);
+                    this.values.put(instance.value(), instance);
                 } else {
                     this.values.put(defInstance.value(), instance);
                 }
