@@ -18,7 +18,9 @@
 package org.apcs.ast;
 
 /**
- * @param value
+ * The Lisp representation of a number, represented by a double.
+ *
+ * @param value the double that represents the lisp value
  */
 public record NumberValue(Double value) implements Value {
     public String toString() {
