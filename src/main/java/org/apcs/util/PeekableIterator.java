@@ -20,17 +20,31 @@ package org.apcs.util;
 import java.util.Iterator;
 
 public interface PeekableIterator<E> extends Iterator<E> {
+    /**
+     * Returns a new peekable iterator from an iterator
+     *
+     * @param value the iterator to be made peekable
+     * @return the new peekable iterator over the iterator
+     */
     static <T> PeekableIterator<T> of(Iterator<T> value) {
         return new BufferedPeekableIterator<>(value);
     }
 
+    /**
+     * Returns a new peekable iterator from an iterable
+     *
+     * @param value the iterable to be made peekable
+     * @return the new peekable iterator over the iterable
+     */
     static <T> PeekableIterator<T> of(Iterable<T> value) {
         return new BufferedPeekableIterator<>(value.iterator());
     }
 
-    boolean hasNext();
-
-    E next();
-
+    /**
+     * Peek the next item in the collection with advancing the iterator or consuming the item.
+     * peek() can be called multiple times and will return the same result until next() is called.
+     *
+     * @return the current item in the iterator
+     */
     E peek();
 }
