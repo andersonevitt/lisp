@@ -22,14 +22,21 @@ import java.nio.file.Path;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-@SuppressWarnings("unused")
 public class CharacterStream implements Iterator<Character> {
-    private final BufferedReader reader;
-    private Position position;
+    private final Reader reader;
+    private final Position position;
+
+    public CharacterStream(Reader reader, Position position) {
+        this.reader = new BufferedReader(reader);
+        this.position = position;
+    }
 
     public CharacterStream(Reader reader) {
-        this.reader = new BufferedReader(reader);
-        this.position = new Position();
+        this(reader, new Position());
+    }
+
+    public CharacterStream(InputStream stream, Position position) {
+        this(new InputStreamReader(stream), position);
     }
 
     public CharacterStream(InputStream stream) {
@@ -45,8 +52,7 @@ public class CharacterStream implements Iterator<Character> {
     }
 
     public CharacterStream(File input) throws FileNotFoundException {
-        this(new FileInputStream(input));
-        this.position = new Position(input.getName());
+        this(new FileInputStream(input), new Position(input.getName()));
     }
 
     @Override
@@ -82,7 +88,7 @@ public class CharacterStream implements Iterator<Character> {
         }
     }
 
-    public BufferedReader getReader() {
+    public Reader getReader() {
         return reader;
     }
 
