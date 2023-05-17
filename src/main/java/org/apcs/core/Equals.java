@@ -10,7 +10,7 @@ import java.util.List;
 @Define("=")
 public class Equals implements Builtin {
     @Override
-    public Value apply(Environment env, List<Value> args) {
+    public Value apply(Environment env, List<Value> args) throws EvalException {
         return new BoolValue(args.get(0).eval(env).equals(args.get(1).eval(env)));
     }
 }

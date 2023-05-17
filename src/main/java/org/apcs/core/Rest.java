@@ -10,7 +10,7 @@ import java.util.List;
 @Define("rest")
 public class Rest implements Builtin {
     @Override
-    public Value apply(Environment env, List<Value> args) {
+    public Value apply(Environment env, List<Value> args) throws EvalException {
         var list = (List<Value>) args.get(0).eval(env).value();
         return new ListValue(list.subList(1, list.size()));
     }

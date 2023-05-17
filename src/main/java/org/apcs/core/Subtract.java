@@ -10,14 +10,16 @@ import java.util.List;
 @Define("-")
 public class Subtract implements Builtin {
     @Override
-    public Value apply(Environment env, List<Value> args) {
+    public Value apply(Environment env, List<Value> args) throws EvalException {
         if (args.size() == 1)
             return new NumberValue(-(double) args.get(0).value());
 
-        var num = (Double) args.get(0).eval(env).value() - args.stream().skip(1)
-                .map((x) -> (Double) x.eval(env).value())
-                .reduce(0.0, Double::sum);
+        double start = (double) args.get(0).eval(env).value();
 
-        return new NumberValue(num);
+        for (int i = 1; i < args.size(); i += 1) {
+            start -= (double) args.get(i).eval(env).value();
+        }
+
+        return new NumberValue(start);
     }
 }

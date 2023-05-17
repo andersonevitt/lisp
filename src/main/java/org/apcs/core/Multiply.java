@@ -10,10 +10,12 @@ import java.util.List;
 @Define("*")
 public class Multiply implements Builtin {
     @Override
-    public Value apply(Environment env, List<Value> args) {
-        var num = args.stream().map((x) -> (Double) x.eval(env).value())
-                .reduce(1.0, (total, elem) -> total * elem);
+    public Value apply(Environment env, List<Value> args) throws EvalException {
+        double start = 1.0;
 
-        return new NumberValue(num);
+        for (Value val : args) {
+            start *= (Double) val.eval(env).value();
+        }
+        return new NumberValue(start);
     }
 }

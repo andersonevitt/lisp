@@ -10,7 +10,7 @@ import java.util.List;
 @Define("apply")
 public class Apply implements Builtin {
     @Override
-    public Value apply(Environment env, List<Value> args) {
+    public Value apply(Environment env, List<Value> args) throws EvalException {
         var list = List.copyOf((List<Value>) args.get(1).eval(env).value());
         list.add(0, args.get(0));
         return new ListValue(list).eval(env);

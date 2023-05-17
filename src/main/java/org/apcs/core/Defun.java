@@ -8,11 +8,11 @@ import java.util.List;
 @Define("defun")
 public class Defun implements Builtin {
     @Override
-    public Value apply(Environment env, List<Value> args) {
+    public Value apply(Environment env, List<Value> args) throws EvalException {
         env.define((String) args.remove(0).value(), new Lambda(
                 ((List<Value>) args.remove(0).value())
                         .stream()
-                        .map((v) -> (String) v.value()).toList(), args));
+                        .map(v -> (String) v.value()).toList(), args));
         return ListValue.nil();
     }
 }

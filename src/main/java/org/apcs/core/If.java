@@ -9,7 +9,7 @@ import java.util.List;
 
 @Define("if")
 public class If implements Builtin {
-    public static Value getOrNil(Environment env, List<Value> vals, int index) {
+    public static Value getOrNil(Environment env, List<Value> vals, int index) throws EvalException {
         if (index < vals.size()) {
             return vals.get(index).eval(env);
         } else {
@@ -18,7 +18,7 @@ public class If implements Builtin {
     }
 
     @Override
-    public Value apply(Environment env, List<Value> args) {
+    public Value apply(Environment env, List<Value> args) throws EvalException {
         if ((boolean) args.get(0).eval(env).value()) {
             return getOrNil(env, args, 1);
         } else {

@@ -81,13 +81,13 @@ public record ListValue(List<Value> values) implements Value {
      * @return The evaluated form of the list
      */
     @Override
-    public Value eval(Environment env) {
+    public Value eval(Environment env) throws EvalException {
         var newEnv = new Environment(env);
 
         // Make copy to avoid mutation related bugs
         // TODO: remove unnecessary copy of array for performance reasons?
         var func = values.get(0).eval(env);
-        var vals = values.stream().skip(1).toList();
+        var vals = values.subList(1, values.size());
 
         if (func instanceof Builtin bf) {
             try {
@@ -99,7 +99,12 @@ public record ListValue(List<Value> values) implements Value {
             }
 
         } else if (func instanceof Lambda l) {
-            assert l.args().size() == vals.size();
+            if (l.args().size() != vals.size()) {
+                throw new EvalException(String.format("""
+                        Function call has incorrect number of arguments.
+                        Expected %d args but found %d
+                        """, l.args().size(), vals.size()));
+            }
 
             for (int i = 0; i < l.args().size(); i += 1) {
                 newEnv.define(l.args().get(i), vals.get(i).eval(env));
@@ -107,11 +112,11 @@ public record ListValue(List<Value> values) implements Value {
 
             return evalList(l.body(), newEnv);
         } else {
-            throw new RuntimeException(func.getClass() + " is not callable: ");
+            throw new EvalException(func.getClass().getSimpleName() + " is not callable: ");
         }
     }
 
-    public Value evalList(List<Value> list, Environment env) {
+    public Value evalList(List<Value> list, Environment env) throws EvalException {
         // Evaluate all args except last
         for (int i = 0; i < list.size() - 1; i += 1) {
             list.get(i).eval(env);

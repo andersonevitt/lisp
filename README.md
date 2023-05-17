@@ -1,4 +1,4 @@
-# Lisp Interpreter
+# Lisp org.apcs.Main.Interpreter
 
 ![CI/CD](https://github.com/andersonevitt/lisp/actions/workflows/maven.yml/badge.svg)
 ![version](https://img.shields.io/github/license/andersonevitt/lisp)

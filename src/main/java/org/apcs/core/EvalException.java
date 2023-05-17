@@ -1,6 +1,8 @@
 package org.apcs.core;
 
-public class EvalException extends RuntimeException {
+import org.apcs.LispException;
+
+public class EvalException extends LispException {
     /**
      * Constructs a new runtime exception with {@code null} as its
      * detail message.  The cause is not initialized, and may subsequently be

@@ -29,6 +29,7 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 
 @SuppressWarnings("unused")
@@ -48,11 +49,15 @@ public class Parser implements Iterator<Value> {
     }
 
     @Override
-    public Value next() {
-        return parse();
+    public Value next() throws NoSuchElementException {
+        try {
+            return parse();
+        } catch (Exception e) {
+            throw new NoSuchElementException(e);
+        }
     }
 
-    public Value parse() {
+    public Value parse() throws ParserException {
         if (!lexer.hasNext()) {
             log.error("No more tokens");
             throw new ParserException("No more tokens");
@@ -86,7 +91,7 @@ public class Parser implements Iterator<Value> {
             lexer.next();
             return new ListValue(new Symbol("unquote"), parse());
         } else if (lexer.peek().isRightParen()) {
-            throw new ParserException("Unexcepted right parenthesis at " + position);
+            throw new ParserException("Unexpected right parenthesis");
         }
 
         log.error("Unable to match token. Peek = {}", lexer.peek());

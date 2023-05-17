@@ -9,7 +9,7 @@ import java.util.List;
 @Define("first")
 public class First implements Builtin {
     @Override
-    public Value apply(Environment env, List<Value> args) {
+    public Value apply(Environment env, List<Value> args) throws EvalException {
         return ((List<Value>) args.get(0).eval(env).value()).get(0);
     }
 }

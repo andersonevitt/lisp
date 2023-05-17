@@ -17,20 +17,18 @@
 
 package org.apcs;
 
-import org.apcs.core.Environment;
 import org.apcs.lexer.CharacterStream;
-import org.apcs.lexer.Lexer;
-import org.apcs.parser.Parser;
 
 import java.io.File;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        var lexer = new Lexer(new CharacterStream(new File("test.lisp")));
 
-        var parser = new Parser(lexer);
-        var env = new Environment();
+        var interpreter = new Interpreter();
 
-        parser.forEachRemaining((t) -> t.eval(env));
+        interpreter.eval(new CharacterStream(new File("test.lisp")));
+
+
+
     }
 }

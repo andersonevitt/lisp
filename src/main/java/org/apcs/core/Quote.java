@@ -9,7 +9,7 @@ import java.util.List;
 @Define("quote")
 public class Quote implements Builtin {
     @Override
-    public Value apply(Environment env, List<Value> args) {
+    public Value apply(Environment env, List<Value> args) throws EvalException {
         return args.get(0);
     }
 }

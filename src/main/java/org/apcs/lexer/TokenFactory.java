@@ -21,7 +21,9 @@ public class TokenFactory {
 
     private static final Token LEFT_PAREN = new Token(TokenType.LEFT_PAREN);
     private static final Token RIGHT_PAREN = new Token(TokenType.RIGHT_PAREN);
-    private TokenFactory() {}
+
+    private TokenFactory() {
+    }
 
     public static Token getRightParen() {
         return RIGHT_PAREN;
@@ -36,7 +38,7 @@ public class TokenFactory {
         return new Token(TokenType.STRING, value.intern());
     }
 
-    public static Token getAtomOrNumber(String matched) {
+    public static Token getSymbolBoolOrNumber(String matched) {
         if ("true".equals(matched)) {
             return new Token(TokenType.BOOL, true);
         } else if ("false".equals(matched)) {

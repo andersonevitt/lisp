@@ -17,7 +17,9 @@
 
 package org.apcs.parser;
 
-public class ParserException extends RuntimeException {
+import org.apcs.LispException;
+
+public class ParserException extends LispException {
     /**
      * Constructs a new runtime exception with {@code null} as its
      * detail message.  The cause is not initialized, and may subsequently be

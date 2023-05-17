@@ -10,10 +10,13 @@ import java.util.List;
 @Define("+")
 public class Add implements Builtin {
     @Override
-    public Value apply(Environment env, List<Value> args) {
-        var num = args.stream().map((x) -> (Double) x.eval(env).value())
-                .reduce(0.0, Double::sum);
+    public Value apply(Environment env, List<Value> args) throws EvalException {
+        double start = 0.0;
 
-        return new NumberValue(num);
+        for (Value val : args) {
+            start += (Double) val.eval(env).value();
+        }
+
+        return new NumberValue(start);
     }
 }

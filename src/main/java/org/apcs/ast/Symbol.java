@@ -21,6 +21,7 @@ import org.apcs.core.Environment;
 
 /**
  * A symbol in lisp represented as a String.
+ *
  * @param value the symbol name
  */
 public record Symbol(String value) implements Value {

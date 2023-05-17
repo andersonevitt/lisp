@@ -10,10 +10,13 @@ import java.util.List;
 @Define("/")
 public class Divide implements Builtin {
     @Override
-    public Value apply(Environment env, List<Value> args) {
-        var num = (Double) args.get(0).value() / args.stream().skip(1).map((x) -> (Double) x.eval(env).value())
-                .reduce(1.0, (total, elem) -> total * elem);
+    public Value apply(Environment env, List<Value> args) throws EvalException {
+        double start = (double) args.get(0).eval(env).value();
 
-        return new NumberValue(num);
+        for (int i = 1; i < args.size(); i += 1) {
+            start /= (double) args.get(i).eval(env).value();
+        }
+
+        return new NumberValue(start);
     }
 }

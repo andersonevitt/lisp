@@ -18,6 +18,7 @@
 package org.apcs.ast;
 
 import org.apcs.core.Environment;
+import org.apcs.core.EvalException;
 
 public interface Value {
     /**
@@ -28,13 +29,19 @@ public interface Value {
     Object value();
 
     /**
+     * Returns the name of the lisp type
+     * @return the name of the lisp value
+     */
+    //String typeName();
+
+    /**
      * Returns the evaluated form of the value.
      * By default, it should not do anything and simply evaluate to itself
      *
      * @param env The environment in which it should be evaluated
      * @return the evaluated form
      */
-    default Value eval(Environment env) {
+    default Value eval(Environment env) throws EvalException {
         return this;
     }
 }

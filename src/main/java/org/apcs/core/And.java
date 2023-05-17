@@ -10,7 +10,7 @@ import java.util.List;
 @Define("and")
 public class And implements Builtin {
     @Override
-    public Value apply(Environment env, List<Value> args) {
+    public Value apply(Environment env, List<Value> args) throws EvalException {
         return new BoolValue((boolean) args.get(0).eval(env).value() && (boolean) args.get(1).eval(env).value());
     }
 }

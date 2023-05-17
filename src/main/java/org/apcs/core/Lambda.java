@@ -9,11 +9,11 @@ import java.util.List;
 @Define("lambda")
 public class Lambda implements Builtin {
     @Override
-    public Value apply(Environment env, List<Value> args) {
+    public Value apply(Environment env, List<Value> args) throws EvalException {
         return new org.apcs.ast.Lambda(
                 ((List<Value>) args.remove(0).value())
                         .stream()
-                        .map((v) -> (String) v.value()).toList(),
+                        .map(v -> (String) v.value()).toList(),
                 args);
     }
 }

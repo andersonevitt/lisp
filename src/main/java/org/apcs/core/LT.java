@@ -10,7 +10,7 @@ import java.util.List;
 @Define("<")
 public class LT implements Builtin {
     @Override
-    public Value apply(Environment env, List<Value> args) {
+    public Value apply(Environment env, List<Value> args) throws EvalException {
         return new BoolValue((Double) args.get(0).value() < (Double) args.get(1).value());
     }
 }

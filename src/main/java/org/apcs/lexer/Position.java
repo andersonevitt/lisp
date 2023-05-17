@@ -36,8 +36,8 @@ public class Position {
      * constructor in the case where file is not null
      *
      * @param line The line number
-     * @param column
-     * @param fileName
+     * @param column The column number
+     * @param fileName The name of the file
      */
     public Position(int line, int column, String fileName) {
         this.line = line;

@@ -99,7 +99,7 @@ public class Lexer implements Iterator<Token>, PeekableIterable<Token> {
                     matched.append(iterator.next());
                 }
 
-                return getAtomOrNumber(matched.toString());
+                return getSymbolBoolOrNumber(matched.toString());
             }
         }
     }
