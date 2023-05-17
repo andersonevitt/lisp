@@ -19,24 +19,40 @@ package org.apcs.ast;
 
 import org.apcs.core.Environment;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public record ListValue(List<Value> values) implements Value {
+    /**
+     * Returns a new list from all of thee arguments
+     * @param values the lisp values to construct the list from
+     */
     public ListValue(Value... values) {
         this(List.of(values));
     }
 
+    /**
+     * Returns a new empty list, also known as nil.
+     * This could also be constructed by evaluating '()
+     *
+     * @return the nil list
+     */
     public static ListValue nil() {
         return new ListValue(List.of());
     }
 
+    /**
+     * Returns a list as a String.
+     * Formats the list with all elements between parenthesis and with space between them.
+     * eg. () (1) (1 2 3 4)
+     *
+     * @return the formatted String
+     */
     public String toString() {
         if (values.isEmpty()) {
             return "()";
         }
 
-        StringBuilder body = new StringBuilder();
+        var body = new StringBuilder();
         body.append("(");
 
         for (int i = 0; i < values.size() - 1; i++) {
@@ -87,10 +103,12 @@ public record ListValue(List<Value> values) implements Value {
     }
 
     public Value evalList(List<Value> list, Environment env) {
+        // Evaluate all args except last
         for (int i = 0; i < list.size() - 1; i += 1) {
             list.get(i).eval(env);
         }
 
+        // return last argument and evaluate it
         return list.get(list.size() - 1).eval(env);
     }
 }

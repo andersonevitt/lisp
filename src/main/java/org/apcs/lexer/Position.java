@@ -20,7 +20,7 @@ package org.apcs.lexer;
 import java.util.Objects;
 
 public class Position {
-    private String file;
+    private final String file;
     private int line;
     private int column;
 
