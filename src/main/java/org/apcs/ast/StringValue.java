@@ -17,6 +17,11 @@
 
 package org.apcs.ast;
 
+/**
+ * The Lisp representation of a string, represented by a String.
+ *
+ * @param value the String that represents the lisp string
+ */
 public record StringValue(String value) implements Value {
     public String toString() {
         return value;

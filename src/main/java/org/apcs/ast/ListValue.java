@@ -18,6 +18,7 @@
 package org.apcs.ast;
 
 import org.apcs.core.Environment;
+import org.apcs.core.EvalException;
 
 import java.util.List;
 
@@ -89,7 +90,14 @@ public record ListValue(List<Value> values) implements Value {
         var vals = values.stream().skip(1).toList();
 
         if (func instanceof Builtin bf) {
-            return bf.apply(env, vals);
+            try {
+                return bf.apply(env, vals);
+            } catch (ClassCastException c) {
+                throw new EvalException("Unable to cast");
+            } catch (ArrayIndexOutOfBoundsException e) {
+                throw new EvalException("Unable to access array element\n" + e.getMessage());
+            }
+
         } else if (func instanceof Lambda l) {
             assert l.args().size() == vals.size();
 

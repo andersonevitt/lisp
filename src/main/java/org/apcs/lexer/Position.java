@@ -35,7 +35,7 @@ public class Position {
     /**
      * constructor in the case where file is not null
      *
-     * @param line
+     * @param line The line number
      * @param column
      * @param fileName
      */
