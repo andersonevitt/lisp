@@ -17,10 +17,11 @@
 
 package org.apcs.lexer;
 
-
 public class TokenFactory {
+
     private static final Token LEFT_PAREN = new Token(TokenType.LEFT_PAREN);
     private static final Token RIGHT_PAREN = new Token(TokenType.RIGHT_PAREN);
+    private TokenFactory() {}
 
     public static Token getRightParen() {
         return RIGHT_PAREN;
@@ -32,7 +33,7 @@ public class TokenFactory {
 
     public static Token getString(String value) {
         // TODO: See if interning would actually yields better performance
-        return new Token(TokenType.STRING, value);
+        return new Token(TokenType.STRING, value.intern());
     }
 
     public static Token getAtomOrNumber(String matched) {

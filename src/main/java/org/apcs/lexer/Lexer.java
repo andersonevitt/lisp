@@ -23,7 +23,6 @@ import org.apcs.util.PeekableIterator;
 import java.util.Iterator;
 
 import static org.apcs.lexer.TokenFactory.*;
-import static org.apcs.util.CharacterUtils.isWhitespace;
 
 public class Lexer implements Iterator<Token>, PeekableIterable<Token> {
     private final PeekableIterator<Character> iterator;
@@ -96,7 +95,7 @@ public class Lexer implements Iterator<Token>, PeekableIterable<Token> {
             default -> {
                 StringBuilder matched = new StringBuilder(8);
 
-                while (iterator.hasNext() && !isWhitespace(iterator.peek()) && iterator.peek() != ')') {
+                while (iterator.hasNext() && !Character.isWhitespace(iterator.peek()) && iterator.peek() != ')') {
                     matched.append(iterator.next());
                 }
 
@@ -106,7 +105,7 @@ public class Lexer implements Iterator<Token>, PeekableIterable<Token> {
     }
 
     private void skipWhitespace() {
-        while (iterator.hasNext() && isWhitespace(iterator.peek())) {
+        while (iterator.hasNext() && Character.isWhitespace(iterator.peek())) {
             iterator.next();
         }
     }
