@@ -26,7 +26,7 @@ public class CharacterStream implements Iterator<Character> {
     private final Reader reader;
     private final Position position;
 
-    public CharacterStream(Reader reader, Position position) {
+    private CharacterStream(Reader reader, Position position) {
         this.reader = new BufferedReader(reader);
         this.position = position;
     }
@@ -84,7 +84,7 @@ public class CharacterStream implements Iterator<Character> {
      * NoSuchElementException is returned
      *
      * @return NoSuchElementException in the case that there are no more elements
-     * @throws NoSuchElementException
+     * @throws NoSuchElementException if there are no more characters available
      */
     @Override
     public Character next() throws NoSuchElementException {

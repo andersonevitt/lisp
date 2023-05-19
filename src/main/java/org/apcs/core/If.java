@@ -17,6 +17,13 @@ public class If implements BuiltinValue {
         }
     }
 
+    /**
+     * Returns the second argument if the first argument evaluates to true, otherwise returns the third
+     *
+     * @param env  the current environment to use
+     * @param args the arguments to the function
+     * @return the evaluated arguments
+     */
     @Override
     public Value<?> apply(Environment env, List<Value<?>> args) throws LispException {
         if (cast(args.get(0).eval(env), BoolValue.class)) {

@@ -9,6 +9,14 @@ import java.util.List;
 
 @Define("eval")
 public class Eval implements BuiltinValue {
+    /**
+     * Evaluates to provided argument
+     *
+     * @param env  the current environment to use
+     * @param args the arguments to the function
+     * @return the first argument evaluated
+     * @throws LispException if the value fails to evaluate
+     */
     @Override
     public Value<?> apply(Environment env, List<Value<?>> args) throws LispException {
         return args.get(0).eval(env);
