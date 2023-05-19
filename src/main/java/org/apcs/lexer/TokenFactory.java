@@ -17,10 +17,13 @@
 
 package org.apcs.lexer;
 
+// TODO: Remove TokenFactory class as it is now useless
+
+@Deprecated
 public class TokenFactory {
 
-    private static final Token LEFT_PAREN = new Token(TokenType.LEFT_PAREN);
-    private static final Token RIGHT_PAREN = new Token(TokenType.RIGHT_PAREN);
+    private static final Token LEFT_PAREN = Token.of(TokenType.LEFT_PAREN);
+    private static final Token RIGHT_PAREN = Token.of(TokenType.RIGHT_PAREN);
 
     private TokenFactory() {
     }
@@ -34,15 +37,14 @@ public class TokenFactory {
     }
 
     public static Token getString(String value) {
-        // TODO: See if interning would actually yields better performance
-        return new Token(TokenType.STRING, value.intern());
+        return Token.of(TokenType.STRING, value.intern());
     }
 
     public static Token getSymbolBoolOrNumber(String matched) {
         if ("true".equals(matched)) {
-            return new Token(TokenType.BOOL, true);
+            return Token.of(TokenType.BOOL, true);
         } else if ("false".equals(matched)) {
-            return new Token(TokenType.BOOL, false);
+            return Token.of(TokenType.BOOL, false);
         }
 
         try {
@@ -53,10 +55,10 @@ public class TokenFactory {
     }
 
     public static Token getNumber(double value) {
-        return new Token(TokenType.NUMBER, value);
+        return Token.of(TokenType.NUMBER, value);
     }
 
     public static Token getSymbol(String name) {
-        return new Token(TokenType.SYMBOL, name);
+        return Token.of(TokenType.SYMBOL, name);
     }
 }

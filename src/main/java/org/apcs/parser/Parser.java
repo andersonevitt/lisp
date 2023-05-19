@@ -63,7 +63,7 @@ public class Parser implements Iterator<Value> {
             throw new ParserException("No more tokens");
         } else if (lexer.peek().isSymbol()) {
             log.trace("Parsed atom");
-            return new Symbol((String) lexer.next().value());
+            return new SymbolValue((String) lexer.next().value());
         } else if (lexer.peek().isNumber()) {
             log.trace("Parsed number");
             return new NumberValue((Double) lexer.next().value());
@@ -75,21 +75,27 @@ public class Parser implements Iterator<Value> {
             List<Value> values = new ArrayList<>();
             lexer.next();
 
-            while (lexer.hasNext() && !lexer.peek().isRightParen()) {
+
+            while (!lexer.peek().isRightParen()) {
                 values.add(parse());
+
+                if (!lexer.hasNext()) throw new ParserException("Unexpected end of file");
             }
 
             lexer.next();
+
+
+            // TODO: Return an unmodifiable list
             return new ListValue(values);
         } else if (lexer.peek().type() == TokenType.QUOTE) {
             lexer.next();
-            return new ListValue(new Symbol("quote"), parse());
+            return new ListValue(new SymbolValue("quote"), parse());
         } else if (lexer.peek().type() == TokenType.QUASI_QUOTE) {
             lexer.next();
-            return new ListValue(new Symbol("quasiquote"), parse());
+            return new ListValue(new SymbolValue("quasiquote"), parse());
         } else if (lexer.peek().type() == TokenType.UNQUOTE) {
             lexer.next();
-            return new ListValue(new Symbol("unquote"), parse());
+            return new ListValue(new SymbolValue("unquote"), parse());
         } else if (lexer.peek().isRightParen()) {
             throw new ParserException("Unexpected right parenthesis");
         }

@@ -30,9 +30,10 @@ public interface Value {
 
     /**
      * Returns the name of the lisp type
+     *
      * @return the name of the lisp value
      */
-    //String typeName();
+    String typeName();
 
     /**
      * Returns the evaluated form of the value.

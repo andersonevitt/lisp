@@ -75,7 +75,7 @@ public class Lexer implements Iterator<Token>, PeekableIterable<Token> {
 
             case '\'' -> {
                 iterator.next();
-                return new Token(TokenType.QUOTE);
+                return Token.of(TokenType.QUOTE);
             }
 
             case '\"' -> {
@@ -94,19 +94,17 @@ public class Lexer implements Iterator<Token>, PeekableIterable<Token> {
             case ';' -> {
                 while (iterator.peek() != '\n') iterator.next();
 
-                // TODO: This could potentially cause a stack overflow in really large numbers and is *slightly*
-                //  inefficient
                 return next();
             }
 
             case '`' -> {
                 iterator.next();
-                return new Token(TokenType.QUASI_QUOTE);
+                return Token.of(TokenType.QUASI_QUOTE);
             }
 
             case ',' -> {
                 iterator.next();
-                return new Token(TokenType.UNQUOTE);
+                return Token.of(TokenType.UNQUOTE);
             }
 
             // Symbol

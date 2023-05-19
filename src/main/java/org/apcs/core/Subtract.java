@@ -1,6 +1,7 @@
 package org.apcs.core;
 
-import org.apcs.ast.Builtin;
+import org.apcs.LispException;
+import org.apcs.ast.BuiltinValue;
 import org.apcs.ast.Define;
 import org.apcs.ast.NumberValue;
 import org.apcs.ast.Value;
@@ -8,9 +9,9 @@ import org.apcs.ast.Value;
 import java.util.List;
 
 @Define("-")
-public class Subtract implements Builtin {
+public class Subtract implements BuiltinValue {
     @Override
-    public Value apply(Environment env, List<Value> args) throws EvalException {
+    public Value apply(Environment env, List<Value> args) throws LispException {
         if (args.size() == 1)
             return new NumberValue(-(double) args.get(0).value());
 

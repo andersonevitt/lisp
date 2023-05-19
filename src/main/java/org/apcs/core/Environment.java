@@ -1,6 +1,6 @@
 package org.apcs.core;
 
-import org.apcs.ast.Builtin;
+import org.apcs.ast.BuiltinValue;
 import org.apcs.ast.Define;
 import org.apcs.ast.Value;
 import org.reflections.Reflections;
@@ -59,13 +59,12 @@ public class Environment {
         }
     }
 
-    // TODO: This may be a bad idea
     private void standardEnv() {
         var reflections = new Reflections("org.apcs.core");
-        var clazzes = reflections.getSubTypesOf(Builtin.class);
+        var clazzes = reflections.getSubTypesOf(BuiltinValue.class);
 
         try {
-            for (Class<? extends Builtin> clazz : clazzes) {
+            for (Class<? extends BuiltinValue> clazz : clazzes) {
                 var instance = clazz.getDeclaredConstructor().newInstance();
                 var defInstance = clazz.getAnnotation(Define.class);
 

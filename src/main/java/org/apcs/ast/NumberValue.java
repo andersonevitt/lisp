@@ -26,4 +26,14 @@ public record NumberValue(Double value) implements Value {
     public String toString() {
         return Double.toString(value);
     }
+
+    /**
+     * Returns the name of the lisp type
+     *
+     * @return the name of the lisp value
+     */
+    @Override
+    public String typeName() {
+        return "number";
+    }
 }

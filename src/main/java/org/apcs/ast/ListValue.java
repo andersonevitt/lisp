@@ -73,6 +73,16 @@ public record ListValue(List<Value> values) implements Value {
     }
 
     /**
+     * Returns the name of the lisp type
+     *
+     * @return the name of the lisp value
+     */
+    @Override
+    public String typeName() {
+        return "list";
+    }
+
+    /**
      * Evaluates a list within the given environment.
      * This should call the first item in the list with the rest of the list
      * as the function parameters.
@@ -82,6 +92,9 @@ public record ListValue(List<Value> values) implements Value {
      */
     @Override
     public Value eval(Environment env) throws EvalException {
+        if (values.isEmpty())
+            throw new EvalException("Cannot evaluate zero length list");
+
         var newEnv = new Environment(env);
 
         // Make copy to avoid mutation related bugs
@@ -89,16 +102,18 @@ public record ListValue(List<Value> values) implements Value {
         var func = values.get(0).eval(env);
         var vals = values.subList(1, values.size());
 
-        if (func instanceof Builtin bf) {
+        if (func instanceof BuiltinValue bf) {
             try {
                 return bf.apply(env, vals);
             } catch (ClassCastException c) {
                 throw new EvalException("Unable to cast");
             } catch (ArrayIndexOutOfBoundsException e) {
                 throw new EvalException("Unable to access array element\n" + e.getMessage());
+            } catch (org.apcs.LispException e) {
+                throw new RuntimeException(e);
             }
 
-        } else if (func instanceof Lambda l) {
+        } else if (func instanceof LambdaValue l) {
             if (l.args().size() != vals.size()) {
                 throw new EvalException(String.format("""
                         Function call has incorrect number of arguments.
@@ -112,7 +127,7 @@ public record ListValue(List<Value> values) implements Value {
 
             return evalList(l.body(), newEnv);
         } else {
-            throw new EvalException(func.getClass().getSimpleName() + " is not callable: ");
+            throw new EvalException(func.typeName() + " is not callable");
         }
     }
 

@@ -24,9 +24,19 @@ import org.apcs.core.Environment;
  *
  * @param value the symbol name
  */
-public record Symbol(String value) implements Value {
+public record SymbolValue(String value) implements Value {
     public String toString() {
         return value;
+    }
+
+    /**
+     * Returns the name of the lisp type
+     *
+     * @return the name of the lisp value
+     */
+    @Override
+    public String typeName() {
+        return "symbol";
     }
 
     /**

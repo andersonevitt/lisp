@@ -1,15 +1,16 @@
 package org.apcs.core;
 
-import org.apcs.ast.Builtin;
+import org.apcs.LispException;
+import org.apcs.ast.BuiltinValue;
 import org.apcs.ast.Define;
 import org.apcs.ast.Value;
 
 import java.util.List;
 
 @Define("quote")
-public class Quote implements Builtin {
+public class Quote implements BuiltinValue {
     @Override
-    public Value apply(Environment env, List<Value> args) throws EvalException {
+    public Value apply(Environment env, List<Value> args) throws LispException {
         return args.get(0);
     }
 }

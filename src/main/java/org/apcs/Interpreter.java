@@ -1,5 +1,6 @@
 package org.apcs;
 
+import com.google.common.base.Throwables;
 import org.apcs.ast.Value;
 import org.apcs.core.Environment;
 import org.apcs.lexer.CharacterStream;
@@ -42,8 +43,8 @@ public class Interpreter {
         try {
             value.get().eval(env);
         } catch (Exception e) {
-            System.err.println(position + ":");
-            System.err.println(e.getMessage().indent(4));
+            System.err.println("Error: " + position + ":");
+            System.err.println(Throwables.getRootCause(e).getMessage().indent(4));
             System.exit(-1);
         }
     }

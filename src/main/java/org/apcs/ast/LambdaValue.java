@@ -2,10 +2,20 @@ package org.apcs.ast;
 
 import java.util.List;
 
-public record Lambda(List<String> args, List<Value> body) implements Value {
+public record LambdaValue(List<String> args, List<Value> body) implements Value {
     @Override
     public Object value() {
         return args;
+    }
+
+    /**
+     * Returns the name of the lisp type
+     *
+     * @return the name of the lisp value
+     */
+    @Override
+    public String typeName() {
+        return "lambda";
     }
 
     /**

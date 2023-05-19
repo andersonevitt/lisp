@@ -26,4 +26,14 @@ public record StringValue(String value) implements Value {
     public String toString() {
         return value;
     }
+
+    /**
+     * Returns the name of the lisp type
+     *
+     * @return the name of the lisp value
+     */
+    @Override
+    public String typeName() {
+        return "string";
+    }
 }
