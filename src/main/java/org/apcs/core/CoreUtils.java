@@ -1,6 +1,9 @@
 package org.apcs.core;
 
+import com.google.common.collect.Range;
 import org.apcs.ast.*;
+
+import java.util.List;
 
 public class CoreUtils {
     private CoreUtils() {}
@@ -49,4 +52,21 @@ public class CoreUtils {
         throw (E) e;
     }
 
+
+    /**
+     * Asserts that the number of arguments provided to a function are with the given range.
+     *
+     * @param args the arguments provided
+     * @param range the number of arguments allowed
+     * @throws ArityException If there an invalid number of arguments
+     */
+    public static void requireArity(List<?> args, Range<Integer> range) throws ArityException {
+        if (!range.contains(args.size()))
+            throw new ArityException(range, args.size());
+    }
+
+    public static void requireArity(List<?> args, int expected) throws ArityException {
+        requireArity(args, Range.singleton(expected));
+    }
 }
+

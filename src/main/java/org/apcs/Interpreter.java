@@ -44,17 +44,20 @@ public class Interpreter {
         try {
             value.get().eval(env);
         } catch (ParserException e) {
-            System.err.println("Parser Error: " + position + ":");
+            System.err.println("Syntax Error: " + position + ":");
             System.err.println(Throwables.getRootCause(e).getMessage().indent(4));
             System.exit(-1);
-        } catch (Exception e) {
+        } catch (LispException e) {
             System.err.println("Error: " + position + ":");
             System.err.println(Throwables.getRootCause(e).getMessage().indent(4));
             System.exit(-1);
+        } catch (Exception e) {
+            System.err.println("Fatal internal error: ");
+            e.printStackTrace();
         }
     }
 
-    public void eval(Value val) {
+    public void eval(Value<?> val) {
         eval(() -> val);
     }
 

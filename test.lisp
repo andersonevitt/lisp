@@ -11,7 +11,7 @@
 
 (def f (lambda (x) (* x 10 20)))
 
-(println (+ 20 12 10 (f 100)))
+(println (+ 20 12 10 (f 200)))
 
 (defun fact (n)
     (if (= n 0)
@@ -26,3 +26,5 @@
 ; (println 12))
 
 (def x 10)
+
+(println (/ 10 20))

@@ -11,7 +11,7 @@ import static org.apcs.core.CoreUtils.cast;
 public class Defun implements BuiltinValue {
     @Override
     public Value<?> apply(Environment env, List<Value<?>> args) throws LispException {
-        env.define((String) args.remove(0).value(), new LambdaValue(
+        env.define(cast(args.remove(0), SymbolValue.class), new LambdaValue(
                 (cast(args.remove(0), ListValue.class))
                         .stream()
                         .map(v -> (String) v.value()).toList(), args));

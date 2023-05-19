@@ -17,11 +17,16 @@
 
 package org.apcs.ast;
 
+import com.google.common.collect.Range;
 import org.apcs.LispException;
+import org.apcs.core.ArityException;
+import org.apcs.core.CoreUtils;
 import org.apcs.core.Environment;
 import org.apcs.core.EvalException;
 
 import java.util.List;
+
+import static org.apcs.core.CoreUtils.requireArity;
 
 public record ListValue(List<Value<?>> values) implements Value<List<Value<?>>> {
     /**
@@ -99,12 +104,7 @@ public record ListValue(List<Value<?>> values) implements Value<List<Value<?>>> 
             }
 
         } else if (func instanceof LambdaValue l) {
-            if (l.args().size() != vals.size()) {
-                throw new EvalException(String.format("""
-                        Function call has incorrect number of arguments.
-                        Expected %d args but found %d arguments
-                        """, l.args().size(), vals.size()));
-            }
+            requireArity(l.args(), vals.size());
 
             for (int i = 0; i < l.args().size(); i += 1) {
                 newEnv.define(l.args().get(i), vals.get(i).eval(env));
