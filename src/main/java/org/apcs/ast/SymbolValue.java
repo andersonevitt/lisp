@@ -38,7 +38,7 @@ public record SymbolValue(String value) implements Value<String> {
      * @return the evaluated form the environment
      */
     @Override
-    public Value eval(Environment env) throws LispException {
+    public Value<?> eval(Environment env) throws LispException {
         return env.get(value);
     }
 }

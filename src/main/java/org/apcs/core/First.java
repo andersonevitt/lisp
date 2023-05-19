@@ -7,7 +7,8 @@ import org.apcs.ast.ListValue;
 import org.apcs.ast.Value;
 
 import java.util.List;
-import static org.apcs.core.CoreUtils.*;
+
+import static org.apcs.core.CoreUtils.cast;
 
 @Define("first")
 public class First implements BuiltinValue {

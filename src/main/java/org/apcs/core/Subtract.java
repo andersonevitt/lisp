@@ -8,7 +8,7 @@ import org.apcs.ast.Value;
 
 import java.util.List;
 
-import static org.apcs.core.CoreUtils.*;
+import static org.apcs.core.CoreUtils.cast;
 
 @Define("-")
 public class Subtract implements BuiltinValue {

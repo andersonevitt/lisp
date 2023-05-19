@@ -29,7 +29,7 @@ public record ListValue(List<Value<?>> values) implements Value<List<Value<?>>> 
      *
      * @param values the lisp values to construct the list from
      */
-    public ListValue(Value... values) {
+    public ListValue(Value<?>... values) {
         this(List.of(values));
     }
 
@@ -82,7 +82,7 @@ public record ListValue(List<Value<?>> values) implements Value<List<Value<?>>> 
      * @return The evaluated form of the list
      */
     @Override
-    public Value eval(Environment env) throws LispException {
+    public Value<?> eval(Environment env) throws LispException {
         if (values.isEmpty()) throw new EvalException("Cannot evaluate zero length list");
 
         var newEnv = new Environment(env);

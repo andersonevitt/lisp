@@ -7,6 +7,7 @@ import org.apcs.lexer.CharacterStream;
 import org.apcs.lexer.Lexer;
 import org.apcs.lexer.Position;
 import org.apcs.parser.Parser;
+import org.apcs.parser.ParserException;
 
 import java.util.function.Supplier;
 
@@ -39,9 +40,13 @@ public class Interpreter {
         }
     }
 
-    public void eval(Supplier<Value> value) {
+    public void eval(Supplier<Value<?>> value) {
         try {
             value.get().eval(env);
+        } catch (ParserException e) {
+            System.err.println("Parser Error: " + position + ":");
+            System.err.println(Throwables.getRootCause(e).getMessage().indent(4));
+            System.exit(-1);
         } catch (Exception e) {
             System.err.println("Error: " + position + ":");
             System.err.println(Throwables.getRootCause(e).getMessage().indent(4));
