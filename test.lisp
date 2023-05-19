@@ -20,7 +20,9 @@
 
 (println (fact 5))
 
-;; Errors
+;; Syntax Errors
 ; (
 ; ()
 ; (println 12))
+
+(def x 10)

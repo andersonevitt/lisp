@@ -23,6 +23,7 @@ import org.apcs.core.Environment;
 
 /**
  * A representation of a lisp value
+ *
  * @param <T> the underlying type of the value that is retrieved with value()
  */
 public interface Value<T> {
