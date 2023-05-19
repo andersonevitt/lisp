@@ -12,6 +12,12 @@ import static org.apcs.core.CoreUtils.cast;
 
 @Define("/")
 public class Divide implements BuiltinValue {
+    /** Divides the given arguments
+     * @param env  the current environment to use
+     * @param args the arguments to the function
+     * @return the quotient of the numbers
+     * @throws LispException
+     */
     @Override
     public Value<?> apply(Environment env, List<Value<?>> args) throws LispException {
         double start = cast(args.get(0).eval(env), NumberValue.class);
