@@ -12,6 +12,14 @@ import static org.apcs.core.CoreUtils.cast;
 
 @Define("-")
 public class Subtract implements BuiltinValue {
+    /** Starts at double that is taken from input file.
+     *  Subtracts subsequent numbers until it reaches the end
+     *  of the sequence of ints
+     * @param env  the current environment to use
+     * @param args the arguments to the function
+     * @return the total of start (0.0) and other subtracted numbers
+     * @throws LispException
+     */
     @Override
     public Value<?> apply(Environment env, List<Value<?>> args) throws LispException {
         if (args.size() == 1)

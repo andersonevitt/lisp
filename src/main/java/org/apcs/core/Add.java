@@ -12,6 +12,12 @@ import static org.apcs.core.CoreUtils.cast;
 
 @Define("+")
 public class Add implements BuiltinValue {
+    /** Starts at 0.0 and adds other input to double start
+     * @param env  the current environment to use
+     * @param args the arguments to the function
+     * @return the sum of start (0.0) and other numbers being added
+     * @throws LispException
+     */
     @Override
     public Value<?> apply(Environment env, List<Value<?>> args) throws LispException {
         double start = 0.0;
