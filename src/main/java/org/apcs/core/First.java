@@ -14,6 +14,7 @@ import static org.apcs.core.CoreUtils.cast;
 public class First implements BuiltinValue {
     /**
      * Returns the first element of a given list
+     *
      * @param env  the current environment to use
      * @param args the arguments to the function
      * @return the first element

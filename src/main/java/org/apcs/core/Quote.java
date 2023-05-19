@@ -1,6 +1,5 @@
 package org.apcs.core;
 
-import org.apcs.LispException;
 import org.apcs.ast.BuiltinValue;
 import org.apcs.ast.Define;
 import org.apcs.ast.Value;
