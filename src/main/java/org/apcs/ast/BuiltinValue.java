@@ -5,7 +5,7 @@ import org.apcs.core.Environment;
 
 import java.util.List;
 
-public non-sealed interface BuiltinValue extends Value<String> {
+public interface BuiltinValue extends Value<String> {
     /**
      * Call the current builtin with the given environment and arguments
      *
