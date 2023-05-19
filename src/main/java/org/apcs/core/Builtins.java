@@ -5,8 +5,8 @@ import org.apcs.ast.*;
 
 import java.util.List;
 
-public class CoreUtils {
-    private CoreUtils() {}
+public class Builtins {
+    private Builtins() {}
 
     /**
      * Casts a given value to the underlying type of the class provided

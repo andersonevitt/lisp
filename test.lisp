@@ -9,9 +9,12 @@
 (println (first a-list))
 (println (rest a-list))
 
-(def f (lambda (x) (* x 10 20)))
+(def f (lambda (n)
+    (def x (+ 10 20 n))
+    x
+))
 
-(println (+ 20 12 10 (f 200)))
+(println (f 200))
 
 (defun fact (n)
     (if (= n 0)

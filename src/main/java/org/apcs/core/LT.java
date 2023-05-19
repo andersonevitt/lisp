@@ -5,7 +5,7 @@ import org.apcs.ast.*;
 
 import java.util.List;
 
-import static org.apcs.core.CoreUtils.cast;
+import static org.apcs.core.Builtins.cast;
 
 @Define("<")
 public class LT implements BuiltinValue {

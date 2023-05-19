@@ -17,16 +17,13 @@
 
 package org.apcs.ast;
 
-import com.google.common.collect.Range;
 import org.apcs.LispException;
-import org.apcs.core.ArityException;
-import org.apcs.core.CoreUtils;
 import org.apcs.core.Environment;
 import org.apcs.core.EvalException;
 
 import java.util.List;
 
-import static org.apcs.core.CoreUtils.requireArity;
+import static org.apcs.core.Builtins.requireArity;
 
 public record ListValue(List<Value<?>> values) implements Value<List<Value<?>>> {
     /**

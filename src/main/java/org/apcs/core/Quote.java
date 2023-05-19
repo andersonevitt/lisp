@@ -6,6 +6,8 @@ import org.apcs.ast.Value;
 
 import java.util.List;
 
+import static org.apcs.core.Builtins.requireArity;
+
 @Define("quote")
 public class Quote implements BuiltinValue {
     /**
@@ -16,7 +18,8 @@ public class Quote implements BuiltinValue {
      * @return the quoted form of the argument
      */
     @Override
-    public Value<?> apply(Environment env, List<Value<?>> args) {
+    public Value<?> apply(Environment env, List<Value<?>> args) throws ArityException {
+        requireArity(args, 1);
         return args.get(0);
     }
 }

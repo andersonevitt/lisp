@@ -1,5 +1,6 @@
 package org.apcs.core;
 
+import com.google.common.collect.Range;
 import org.apcs.LispException;
 import org.apcs.ast.BuiltinValue;
 import org.apcs.ast.Define;
@@ -8,7 +9,8 @@ import org.apcs.ast.Value;
 
 import java.util.List;
 
-import static org.apcs.core.CoreUtils.cast;
+import static org.apcs.core.Builtins.cast;
+import static org.apcs.core.Builtins.requireArity;
 
 @Define("-")
 public class Subtract implements BuiltinValue {
@@ -18,10 +20,10 @@ public class Subtract implements BuiltinValue {
      * @param env  the current environment to use
      * @param args the arguments to the function
      * @return the total of start (0.0) and other subtracted numbers
-     * @throws LispException
      */
     @Override
     public Value<?> apply(Environment env, List<Value<?>> args) throws LispException {
+        requireArity(args, Range.atLeast(1));
         if (args.size() == 1)
             return new NumberValue(-cast(args.get(0), NumberValue.class));
 

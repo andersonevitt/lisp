@@ -18,7 +18,7 @@
 package org.apcs.ast;
 
 import org.apcs.LispException;
-import org.apcs.core.CoreUtils;
+import org.apcs.core.Builtins;
 import org.apcs.core.Environment;
 
 /**
@@ -40,7 +40,7 @@ public interface Value<T> {
      * @return the name of the lisp value
      */
     default String typeName() {
-        return CoreUtils.getTypeName(getClass());
+        return Builtins.getTypeName(getClass());
     }
 
     /**

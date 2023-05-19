@@ -5,8 +5,8 @@ import org.apcs.ast.*;
 
 import java.util.List;
 
-import static org.apcs.core.CoreUtils.cast;
-import static org.apcs.core.CoreUtils.requireArity;
+import static org.apcs.core.Builtins.cast;
+import static org.apcs.core.Builtins.requireArity;
 
 @Define("def")
 public class Def implements BuiltinValue {

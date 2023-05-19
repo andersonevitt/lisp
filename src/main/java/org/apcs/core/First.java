@@ -8,7 +8,8 @@ import org.apcs.ast.Value;
 
 import java.util.List;
 
-import static org.apcs.core.CoreUtils.cast;
+import static org.apcs.core.Builtins.cast;
+import static org.apcs.core.Builtins.requireArity;
 
 @Define("first")
 public class First implements BuiltinValue {
@@ -22,6 +23,7 @@ public class First implements BuiltinValue {
      */
     @Override
     public Value<?> apply(Environment env, List<Value<?>> args) throws LispException {
-        return (cast(args.get(0).eval(env), ListValue.class)).get(0);
+        requireArity(args, 1);
+        return cast(args.get(0).eval(env), ListValue.class).get(0);
     }
 }

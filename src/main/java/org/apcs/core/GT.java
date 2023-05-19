@@ -5,7 +5,8 @@ import org.apcs.ast.*;
 
 import java.util.List;
 
-import static org.apcs.core.CoreUtils.cast;
+import static org.apcs.core.Builtins.cast;
+import static org.apcs.core.Builtins.requireArity;
 
 @Define(">")
 public class GT implements BuiltinValue {
@@ -18,6 +19,8 @@ public class GT implements BuiltinValue {
      */
     @Override
     public Value<?> apply(Environment env, List<Value<?>> args) throws LispException {
+        // TODO: add ability for more args
+        requireArity(args, 2);
         return new BoolValue(cast(args.get(0).eval(env), NumberValue.class) > cast(args.get(1).eval(env),
                 NumberValue.class));
     }

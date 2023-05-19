@@ -9,8 +9,8 @@ import org.apcs.ast.Value;
 
 import java.util.List;
 
-import static org.apcs.core.CoreUtils.cast;
-import static org.apcs.core.CoreUtils.requireArity;
+import static org.apcs.core.Builtins.cast;
+import static org.apcs.core.Builtins.requireArity;
 
 @Define("/")
 public class Divide implements BuiltinValue {

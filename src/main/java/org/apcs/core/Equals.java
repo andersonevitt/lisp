@@ -20,6 +20,7 @@ public class Equals implements BuiltinValue {
      */
     @Override
     public Value<?> apply(Environment env, List<Value<?>> args) throws LispException {
+        Builtins.requireArity(args, 2);
         return new BoolValue(args.get(0).eval(env).equals(args.get(1).eval(env)));
     }
 }

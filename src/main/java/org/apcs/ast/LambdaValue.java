@@ -10,7 +10,7 @@ public record LambdaValue(List<String> args, List<Value<?>> body) implements Val
 
     /**
      * Returns the string representation of a function.
-     * This is in the form <Lambda #adress>
+     * This is formatted as <Lambda adress>
      *
      * @return the function as a string
      */

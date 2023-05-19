@@ -7,6 +7,8 @@ import org.apcs.ast.Value;
 
 import java.util.List;
 
+import static org.apcs.core.Builtins.requireArity;
+
 @Define("eval")
 public class Eval implements BuiltinValue {
     /**
@@ -19,6 +21,7 @@ public class Eval implements BuiltinValue {
      */
     @Override
     public Value<?> apply(Environment env, List<Value<?>> args) throws LispException {
+        requireArity(args, 2);
         return args.get(0).eval(env);
     }
 }

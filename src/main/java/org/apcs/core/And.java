@@ -8,7 +8,7 @@ import org.apcs.ast.Value;
 
 import java.util.List;
 
-import static org.apcs.core.CoreUtils.cast;
+import static org.apcs.core.Builtins.cast;
 
 @Define("and")
 public class And implements BuiltinValue {

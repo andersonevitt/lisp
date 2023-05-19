@@ -9,7 +9,7 @@ import org.apcs.ast.Value;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.apcs.core.CoreUtils.cast;
+import static org.apcs.core.Builtins.cast;
 
 @Define("apply")
 public class Apply implements BuiltinValue {
