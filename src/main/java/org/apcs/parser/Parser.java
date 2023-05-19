@@ -18,6 +18,7 @@
 package org.apcs.parser;
 
 import org.apcs.ast.*;
+import org.apcs.core.InternalException;
 import org.apcs.lexer.Lexer;
 import org.apcs.lexer.Position;
 import org.apcs.lexer.Token;
@@ -40,7 +41,7 @@ public class Parser implements Iterator<Value> {
 
     public Parser(Lexer lexer) {
         this.position = lexer.getPosition();
-        this.lexer = lexer.peekableIterator();
+        this.lexer = PeekableIterator.of(lexer);
     }
 
     @Override
@@ -59,13 +60,10 @@ public class Parser implements Iterator<Value> {
 
     public Value parse() throws ParserException {
         if (!lexer.hasNext()) {
-            log.error("No more tokens");
             throw new ParserException("No more tokens");
         } else if (lexer.peek().isSymbol()) {
-            log.trace("Parsed atom");
             return new SymbolValue((String) lexer.next().value());
         } else if (lexer.peek().isNumber()) {
-            log.trace("Parsed number");
             return new NumberValue((Double) lexer.next().value());
         } else if (lexer.peek().type() == TokenType.BOOL) {
             return new BoolValue((boolean) lexer.next().value());
@@ -75,7 +73,6 @@ public class Parser implements Iterator<Value> {
             List<Value> values = new ArrayList<>();
             lexer.next();
 
-
             while (!lexer.peek().isRightParen()) {
                 values.add(parse());
 
@@ -83,9 +80,6 @@ public class Parser implements Iterator<Value> {
             }
 
             lexer.next();
-
-
-            // TODO: Return an unmodifiable list
             return new ListValue(values);
         } else if (lexer.peek().type() == TokenType.QUOTE) {
             lexer.next();
@@ -100,8 +94,7 @@ public class Parser implements Iterator<Value> {
             throw new ParserException("Unexpected right parenthesis");
         }
 
-        log.error("Unable to match token. Peek = {}", lexer.peek());
-        throw new IllegalStateException("Unable to match token");
+        throw new ParserException(new InternalException("Unable to match token"));
     }
 
     public Position getPosition() {

@@ -12,7 +12,11 @@ import java.util.List;
 public class If implements BuiltinValue {
     public static Value getOrNil(Environment env, List<Value> vals, int index) throws EvalException {
         if (index < vals.size()) {
-            return vals.get(index).eval(env);
+            try {
+                return vals.get(index).eval(env);
+            } catch (LispException e) {
+                throw new RuntimeException(e);
+            }
         } else {
             return ListValue.nil();
         }

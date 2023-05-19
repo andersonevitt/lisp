@@ -14,7 +14,7 @@ public class Interpreter {
     private final Environment env;
     private Position position;
 
-    public Interpreter() {
+    public Interpreter() throws LispException {
         env = new Environment();
     }
 

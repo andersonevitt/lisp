@@ -1,7 +1,7 @@
 package org.apcs.core;
 
+import org.apcs.LispException;
 import org.apcs.ast.BuiltinValue;
-import org.apcs.ast.Define;
 import org.apcs.ast.Value;
 import org.reflections.Reflections;
 
@@ -21,7 +21,7 @@ public class Environment {
         this.values = new HashMap<>();
     }
 
-    public Environment() {
+    public Environment() throws InternalException {
         this(null);
         standardEnv();
     }
@@ -32,12 +32,12 @@ public class Environment {
     }
 
     // Finds value then sets it
-    public void set(String name, Value value) {
+    public void set(String name, Value value) throws LispException {
         Environment env = this.findEnvironment(name);
         if (env != null && env.values.containsKey(name)) {
             env.values.put(name, value);
         } else {
-            throw new RuntimeException(String.format("Unable to find \"%s\"", name));
+            throw new EvalException(String.format("Unable to find \"%s\"", name));
         }
     }
 
@@ -50,35 +50,29 @@ public class Environment {
     }
 
     //
-    public Value get(String name) {
+    public Value get(String name) throws LispException {
         Environment env = this.findEnvironment(name);
         if (env != null && env.values.containsKey(name)) {
             return env.values.get(name);
         } else {
-            throw new RuntimeException(String.format("Unable to find \"%s\"", name));
+            throw new EvalException(String.format("Unable to find \"%s\"", name));
         }
     }
 
-    private void standardEnv() {
+    private void standardEnv() throws InternalException {
         var reflections = new Reflections("org.apcs.core");
-        var clazzes = reflections.getSubTypesOf(BuiltinValue.class);
+        var classes = reflections.getSubTypesOf(BuiltinValue.class);
 
         try {
-            for (Class<? extends BuiltinValue> clazz : clazzes) {
+            for (Class<? extends BuiltinValue> clazz : classes) {
                 var instance = clazz.getDeclaredConstructor().newInstance();
-                var defInstance = clazz.getAnnotation(Define.class);
 
-                // If it has the @Define annotation use that, otherwise use value() for name
-                if (defInstance == null) {
-                    this.values.put(instance.value(), instance);
-                } else {
-                    this.values.put(defInstance.value(), instance);
-                }
+                this.values.put(instance.getName(), instance);
             }
 
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException |
                  NoSuchMethodException e) {
-            throw new RuntimeException(e);
+            throw new InternalException("Fatal error accessing class", e);
         }
     }
 }

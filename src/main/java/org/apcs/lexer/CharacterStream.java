@@ -84,7 +84,7 @@ public class CharacterStream implements Iterator<Character> {
             position.nextColumn();
             return value;
         } catch (IOException e) {
-            throw new NoSuchElementException();
+            throw new NoSuchElementException(e);
         }
     }
 

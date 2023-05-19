@@ -17,8 +17,8 @@
 
 package org.apcs.ast;
 
+import org.apcs.LispException;
 import org.apcs.core.Environment;
-import org.apcs.core.EvalException;
 
 public interface Value {
     /**
@@ -42,7 +42,7 @@ public interface Value {
      * @param env The environment in which it should be evaluated
      * @return the evaluated form
      */
-    default Value eval(Environment env) throws EvalException {
+    default Value eval(Environment env) throws LispException {
         return this;
     }
 }

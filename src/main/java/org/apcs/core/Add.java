@@ -8,6 +8,8 @@ import org.apcs.ast.Value;
 
 import java.util.List;
 
+import static org.apcs.core.CoreUtils.cast;
+
 @Define("+")
 public class Add implements BuiltinValue {
     @Override
@@ -15,7 +17,7 @@ public class Add implements BuiltinValue {
         double start = 0.0;
 
         for (Value val : args) {
-            start += (Double) val.eval(env).value();
+            start += cast(val.eval(env), Double.class);
         }
 
         return new NumberValue(start);

@@ -17,14 +17,13 @@
 
 package org.apcs.lexer;
 
-import org.apcs.util.PeekableIterable;
 import org.apcs.util.PeekableIterator;
 
 import java.util.Iterator;
 
 import static org.apcs.lexer.TokenType.*;
 
-public class Lexer implements Iterator<Token>, PeekableIterable<Token> {
+public class Lexer implements Iterator<Token> {
     private final PeekableIterator<Character> iterator;
     private final Position position;
 
@@ -146,10 +145,6 @@ public class Lexer implements Iterator<Token>, PeekableIterable<Token> {
         }
     }
 
-    @Override
-    public Iterator<Token> iterator() {
-        return this;
-    }
 
     /**
      * Returns the position of lexer

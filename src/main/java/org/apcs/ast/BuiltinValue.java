@@ -26,6 +26,21 @@ public interface BuiltinValue extends Value {
     }
 
     default String typeName() {
-        throw new IllegalStateException("Not implemented");
+        return "lambda";
+    }
+
+    default String getName() {
+        try {
+            var defInstance = this.getClass().getAnnotation(Define.class);
+
+            // If it is annotated with the @Define annotation use that, otherwise use value() for name
+            if (defInstance == null) {
+                return value();
+            } else {
+                return defInstance.value();
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }

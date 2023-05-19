@@ -17,6 +17,7 @@
 
 package org.apcs.ast;
 
+import org.apcs.LispException;
 import org.apcs.core.Environment;
 import org.apcs.core.EvalException;
 
@@ -91,26 +92,20 @@ public record ListValue(List<Value> values) implements Value {
      * @return The evaluated form of the list
      */
     @Override
-    public Value eval(Environment env) throws EvalException {
-        if (values.isEmpty())
-            throw new EvalException("Cannot evaluate zero length list");
+    public Value eval(Environment env) throws LispException {
+        if (values.isEmpty()) throw new EvalException("Cannot evaluate zero length list");
 
         var newEnv = new Environment(env);
 
         // Make copy to avoid mutation related bugs
-        // TODO: remove unnecessary copy of array for performance reasons?
         var func = values.get(0).eval(env);
         var vals = values.subList(1, values.size());
 
         if (func instanceof BuiltinValue bf) {
             try {
                 return bf.apply(env, vals);
-            } catch (ClassCastException c) {
-                throw new EvalException("Unable to cast");
-            } catch (ArrayIndexOutOfBoundsException e) {
-                throw new EvalException("Unable to access array element\n" + e.getMessage());
-            } catch (org.apcs.LispException e) {
-                throw new RuntimeException(e);
+            } catch (Exception e) {
+                throw new LispException(e);
             }
 
         } else if (func instanceof LambdaValue l) {
@@ -134,10 +129,18 @@ public record ListValue(List<Value> values) implements Value {
     public Value evalList(List<Value> list, Environment env) throws EvalException {
         // Evaluate all args except last
         for (int i = 0; i < list.size() - 1; i += 1) {
-            list.get(i).eval(env);
+            try {
+                list.get(i).eval(env);
+            } catch (LispException e) {
+                throw new RuntimeException(e);
+            }
         }
 
         // return last argument and evaluate it
-        return list.get(list.size() - 1).eval(env);
+        try {
+            return list.get(list.size() - 1).eval(env);
+        } catch (LispException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

@@ -17,6 +17,7 @@
 
 package org.apcs.ast;
 
+import org.apcs.LispException;
 import org.apcs.core.Environment;
 
 /**
@@ -47,7 +48,7 @@ public record SymbolValue(String value) implements Value {
      * @return the evaluated form the environment
      */
     @Override
-    public Value eval(Environment env) {
+    public Value eval(Environment env) throws LispException {
         return env.get(value);
     }
 }
