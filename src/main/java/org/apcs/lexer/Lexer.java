@@ -22,7 +22,7 @@ import org.apcs.util.PeekableIterator;
 
 import java.util.Iterator;
 
-import static org.apcs.lexer.TokenFactory.*;
+import static org.apcs.lexer.TokenType.*;
 
 public class Lexer implements Iterator<Token>, PeekableIterable<Token> {
     private final PeekableIterator<Character> iterator;
@@ -65,19 +65,21 @@ public class Lexer implements Iterator<Token>, PeekableIterable<Token> {
         switch (iterator.peek()) {
             case '(' -> {
                 iterator.next();
-                return getLeftParen();
+                return Token.of(LEFT_PAREN);
             }
 
             case ')' -> {
                 iterator.next();
-                return getRightParen();
+                return Token.of(RIGHT_PAREN);
             }
 
+            // Quote
             case '\'' -> {
                 iterator.next();
-                return Token.of(TokenType.QUOTE);
+                return Token.of(QUOTE);
             }
 
+            // Strings
             case '\"' -> {
                 iterator.next();
                 StringBuilder matched = new StringBuilder();
@@ -88,20 +90,23 @@ public class Lexer implements Iterator<Token>, PeekableIterable<Token> {
 
                 iterator.next();
 
-                return getString(matched.toString());
+                return Token.of(STRING, matched.toString().intern());
             }
 
+            // Comments
             case ';' -> {
                 while (iterator.peek() != '\n') iterator.next();
 
                 return next();
             }
 
+            // Quasi-quote
             case '`' -> {
                 iterator.next();
                 return Token.of(TokenType.QUASI_QUOTE);
             }
 
+            // unquote
             case ',' -> {
                 iterator.next();
                 return Token.of(TokenType.UNQUOTE);
@@ -115,7 +120,19 @@ public class Lexer implements Iterator<Token>, PeekableIterable<Token> {
                     matched.append(iterator.next());
                 }
 
-                return getSymbolBoolOrNumber(matched.toString());
+                var str = matched.toString();
+
+                if ("true".equals(str)) {
+                    return Token.of(TokenType.BOOL, true);
+                } else if ("false".equals(str)) {
+                    return Token.of(TokenType.BOOL, false);
+                }
+
+                try {
+                    return Token.of(NUMBER, Double.parseDouble(str));
+                } catch (NumberFormatException e) {
+                    return Token.of(SYMBOL, str);
+                }
             }
         }
     }
