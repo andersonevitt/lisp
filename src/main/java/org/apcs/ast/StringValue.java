@@ -22,18 +22,8 @@ package org.apcs.ast;
  *
  * @param value the String that represents the lisp string
  */
-public record StringValue(String value) implements Value {
+public record StringValue(String value) implements Value<String> {
     public String toString() {
         return value;
-    }
-
-    /**
-     * Returns the name of the lisp type
-     *
-     * @return the name of the lisp value
-     */
-    @Override
-    public String typeName() {
-        return "string";
     }
 }

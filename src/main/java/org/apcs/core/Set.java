@@ -1,18 +1,17 @@
 package org.apcs.core;
 
 import org.apcs.LispException;
-import org.apcs.ast.BuiltinValue;
-import org.apcs.ast.Define;
-import org.apcs.ast.ListValue;
-import org.apcs.ast.Value;
+import org.apcs.ast.*;
 
 import java.util.List;
+
+import static org.apcs.core.CoreUtils.cast;
 
 @Define("set!")
 public class Set implements BuiltinValue {
     @Override
-    public Value apply(Environment env, List<Value> args) throws LispException {
-        env.set((String) args.get(0).value(), args.get(1).eval(env));
+    public Value<?> apply(Environment env, List<Value<?>> args) throws LispException {
+        env.set(cast(args.get(0), SymbolValue.class), args.get(1).eval(env));
         return ListValue.nil();
     }
 }

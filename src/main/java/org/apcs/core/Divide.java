@@ -11,7 +11,7 @@ import java.util.List;
 @Define("/")
 public class Divide implements BuiltinValue {
     @Override
-    public Value apply(Environment env, List<Value> args) throws LispException {
+    public Value<?> apply(Environment env, List<Value<?>> args) throws LispException {
         double start = (double) args.get(0).eval(env).value();
 
         for (int i = 1; i < args.size(); i += 1) {

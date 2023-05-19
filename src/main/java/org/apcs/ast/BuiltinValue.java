@@ -5,7 +5,7 @@ import org.apcs.core.Environment;
 
 import java.util.List;
 
-public interface BuiltinValue extends Value {
+public non-sealed interface BuiltinValue extends Value<String> {
     /**
      * Call the current builtin with the given environment and arguments
      *
@@ -13,10 +13,10 @@ public interface BuiltinValue extends Value {
      * @param args the arguments to the function
      * @return the evaluated builtin function result
      */
-    Value apply(Environment env, List<Value> args) throws LispException;
+    Value<?> apply(Environment env, List<Value<?>> args) throws LispException;
 
     /**
-     * The name of the builtin as a string.
+     * The name of the builtin as a str
      * This should not be implemented if the builtin has the @Define annotation
      *
      * @return the name of the function
@@ -25,10 +25,16 @@ public interface BuiltinValue extends Value {
         return null;
     }
 
+    @Override
     default String typeName() {
         return "lambda";
     }
 
+    /**
+     * Gets the name of the builtin function from either its annotation or value()
+     *
+     * @return the name of the builtin
+     */
     default String getName() {
         try {
             var defInstance = this.getClass().getAnnotation(Define.class);

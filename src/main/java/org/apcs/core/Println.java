@@ -11,7 +11,7 @@ import java.util.List;
 @Define("println")
 public class Println implements BuiltinValue {
     @Override
-    public Value apply(Environment env, List<Value> args) throws LispException {
+    public Value<?> apply(Environment env, List<Value<?>> args) throws LispException {
         System.out.println(args.get(0).eval(env));
         return ListValue.nil();
     }

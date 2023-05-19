@@ -22,18 +22,8 @@ package org.apcs.ast;
  *
  * @param value the double that represents the lisp value
  */
-public record NumberValue(Double value) implements Value {
+public record NumberValue(Double value) implements Value<Double> {
     public String toString() {
         return Double.toString(value);
-    }
-
-    /**
-     * Returns the name of the lisp type
-     *
-     * @return the name of the lisp value
-     */
-    @Override
-    public String typeName() {
-        return "number";
     }
 }

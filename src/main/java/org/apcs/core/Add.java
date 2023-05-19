@@ -13,11 +13,11 @@ import static org.apcs.core.CoreUtils.cast;
 @Define("+")
 public class Add implements BuiltinValue {
     @Override
-    public Value apply(Environment env, List<Value> args) throws LispException {
+    public Value<?> apply(Environment env, List<Value<?>> args) throws LispException {
         double start = 0.0;
 
-        for (Value val : args) {
-            start += cast(val.eval(env), Double.class);
+        for (Value<?> val : args) {
+            start += cast(val.eval(env), NumberValue.class);
         }
 
         return new NumberValue(start);

@@ -1,10 +1,9 @@
 package org.apcs.core;
 
-import org.apcs.LispException;
 
 import java.security.PrivilegedActionException;
 
-public class TypeException extends LispException {
+public class TypeException extends EvalException {
     /**
      * Constructs a new exception with {@code null} as its detail message.
      * The cause is not initialized, and may subsequently be initialized by a

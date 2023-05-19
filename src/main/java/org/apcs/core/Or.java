@@ -11,7 +11,7 @@ import java.util.List;
 @Define("or")
 public class Or implements BuiltinValue {
     @Override
-    public Value apply(Environment env, List<Value> args) throws LispException {
+    public Value<?> apply(Environment env, List<Value<?>> args) throws LispException {
         return new BoolValue((boolean) args.get(0).eval(env).value() || (boolean) args.get(1).eval(env).value());
     }
 }

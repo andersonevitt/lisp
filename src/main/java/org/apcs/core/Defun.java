@@ -8,9 +8,9 @@ import java.util.List;
 @Define("defun")
 public class Defun implements BuiltinValue {
     @Override
-    public Value apply(Environment env, List<Value> args) throws LispException {
+    public Value<?> apply(Environment env, List<Value<?>> args) throws LispException {
         env.define((String) args.remove(0).value(), new LambdaValue(
-                ((List<Value>) args.remove(0).value())
+                ((List<Value<?>>) args.remove(0).value())
                         .stream()
                         .map(v -> (String) v.value()).toList(), args));
         return ListValue.nil();

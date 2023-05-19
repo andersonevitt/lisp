@@ -70,7 +70,7 @@ public class Parser implements Iterator<Value> {
         } else if (lexer.peek().isString()) {
             return new StringValue((String) lexer.next().value());
         } else if (lexer.peek().isLeftParen()) {
-            List<Value> values = new ArrayList<>();
+            List<Value<?>> values = new ArrayList<>();
             lexer.next();
 
             while (!lexer.peek().isRightParen()) {

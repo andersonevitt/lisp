@@ -10,7 +10,7 @@ import java.util.List;
 @Define("quote")
 public class Quote implements BuiltinValue {
     @Override
-    public Value apply(Environment env, List<Value> args) throws LispException {
+    public Value<?> apply(Environment env, List<Value<?>> args) throws LispException {
         return args.get(0);
     }
 }

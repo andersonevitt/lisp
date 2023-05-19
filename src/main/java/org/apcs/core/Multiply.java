@@ -11,7 +11,7 @@ import java.util.List;
 @Define("*")
 public class Multiply implements BuiltinValue {
     @Override
-    public Value apply(Environment env, List<Value> args) throws LispException {
+    public Value<?> apply(Environment env, List<Value<?>> args) throws LispException {
         double start = 1.0;
 
         for (Value val : args) {

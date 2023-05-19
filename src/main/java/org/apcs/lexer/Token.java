@@ -68,4 +68,13 @@ public class Token {
     public Object value() {
         return value;
     }
+
+    public String toString() {
+        var str = type().name();
+
+        if (value() == null)
+            return str;
+        else
+            return str + "(" + value() + ")";
+    }
 }

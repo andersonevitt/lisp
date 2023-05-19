@@ -18,22 +18,29 @@
 package org.apcs.ast;
 
 import org.apcs.LispException;
+import org.apcs.core.CoreUtils;
 import org.apcs.core.Environment;
 
-public interface Value {
+/**
+ * A representation of a lisp value
+ * @param <T> the underlying type of the value that is retrieved with value()
+ */
+public interface Value<T> {
     /**
      * Returns the Java representation of the Value
      *
      * @return the Java representation of the Value
      */
-    Object value();
+    T value();
 
     /**
      * Returns the name of the lisp type
      *
      * @return the name of the lisp value
      */
-    String typeName();
+    default String typeName() {
+        return CoreUtils.getTypeName(getClass());
+    }
 
     /**
      * Returns the evaluated form of the value.
@@ -42,7 +49,7 @@ public interface Value {
      * @param env The environment in which it should be evaluated
      * @return the evaluated form
      */
-    default Value eval(Environment env) throws LispException {
+    default Value<?> eval(Environment env) throws LispException {
         return this;
     }
 }

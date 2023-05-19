@@ -11,7 +11,7 @@ import java.util.List;
 @Define("lambda")
 public class Lambda implements BuiltinValue {
     @Override
-    public Value apply(Environment env, List<Value> args) throws LispException {
+    public Value<?> apply(Environment env, List<Value<?>> args) throws LispException {
         return new LambdaValue(
                 ((List<Value>) args.remove(0).value())
                         .stream()

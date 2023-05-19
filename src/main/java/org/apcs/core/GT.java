@@ -11,7 +11,7 @@ import java.util.List;
 @Define(">")
 public class GT implements BuiltinValue {
     @Override
-    public Value apply(Environment env, List<Value> args) throws LispException {
+    public Value<?> apply(Environment env, List<Value<?>> args) throws LispException {
         return new BoolValue((Double) args.get(0).value() > (Double) args.get(1).value());
     }
 }

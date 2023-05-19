@@ -23,9 +23,9 @@ import org.apcs.core.EvalException;
 
 import java.util.List;
 
-public record ListValue(List<Value> values) implements Value {
+public record ListValue(List<Value<?>> values) implements Value<List<Value<?>>> {
     /**
-     * Returns a new list from all of thee arguments
+     * Returns a new list from all of the arguments
      *
      * @param values the lisp values to construct the list from
      */
@@ -69,18 +69,8 @@ public record ListValue(List<Value> values) implements Value {
     }
 
     @Override
-    public Object value() {
+    public List<Value<?>> value() {
         return values;
-    }
-
-    /**
-     * Returns the name of the lisp type
-     *
-     * @return the name of the lisp value
-     */
-    @Override
-    public String typeName() {
-        return "list";
     }
 
     /**
@@ -112,7 +102,7 @@ public record ListValue(List<Value> values) implements Value {
             if (l.args().size() != vals.size()) {
                 throw new EvalException(String.format("""
                         Function call has incorrect number of arguments.
-                        Expected %d args but found %d
+                        Expected %d args but found %d arguments
                         """, l.args().size(), vals.size()));
             }
 
@@ -126,7 +116,7 @@ public record ListValue(List<Value> values) implements Value {
         }
     }
 
-    public Value evalList(List<Value> list, Environment env) throws EvalException {
+    public Value<?> evalList(List<Value<?>> list, Environment env) throws EvalException {
         // Evaluate all args except last
         for (int i = 0; i < list.size() - 1; i += 1) {
             try {
