@@ -19,3 +19,8 @@
         (* n (fact (- n 1)))))
 
 (println (fact 5))
+
+;; Errors
+; (
+; ()
+; (println 12))
