@@ -12,6 +12,13 @@ import static org.apcs.core.CoreUtils.cast;
 
 @Define("first")
 public class First implements BuiltinValue {
+    /**
+     * Returns the first element of a given list
+     * @param env  the current environment to use
+     * @param args the arguments to the function
+     * @return the first element
+     * @throws LispException if the list does not have a first element
+     */
     @Override
     public Value<?> apply(Environment env, List<Value<?>> args) throws LispException {
         return (cast(args.get(0).eval(env), ListValue.class)).get(0);

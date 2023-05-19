@@ -3,8 +3,7 @@ package org.apcs.core;
 import org.apcs.ast.*;
 
 public class CoreUtils {
-    private CoreUtils() {
-    }
+    private CoreUtils() {}
 
     /**
      * Casts a given value to the underlying type of the class provided

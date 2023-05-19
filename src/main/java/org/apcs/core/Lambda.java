@@ -1,19 +1,18 @@
 package org.apcs.core;
 
 import org.apcs.LispException;
-import org.apcs.ast.BuiltinValue;
-import org.apcs.ast.Define;
-import org.apcs.ast.LambdaValue;
-import org.apcs.ast.Value;
+import org.apcs.ast.*;
 
 import java.util.List;
+
+import static org.apcs.core.CoreUtils.cast;
 
 @Define("lambda")
 public class Lambda implements BuiltinValue {
     @Override
     public Value<?> apply(Environment env, List<Value<?>> args) throws LispException {
         return new LambdaValue(
-                ((List<Value>) args.remove(0).value())
+                cast(args.remove(0), ListValue.class)
                         .stream()
                         .map(v -> (String) v.value()).toList(),
                 args);

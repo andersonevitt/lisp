@@ -9,11 +9,9 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 
-// TODO: Write documentation and make fields private
-
 public class Environment {
     public final Environment parent;
-    private final Map<String, Value> values;
+    private final Map<String, Value<?>> values;
 
     // Constructor with 1-arg for parent. Creates a new HashMap.
     public Environment(Environment parent) {
@@ -27,12 +25,12 @@ public class Environment {
     }
 
     // Sets value in current scope
-    public void define(String name, Value value) {
+    public void define(String name, Value<?> value) {
         this.values.put(name, value);
     }
 
     // Finds value then sets it
-    public void set(String name, Value value) throws LispException {
+    public void set(String name, Value<?> value) throws LispException {
         Environment env = this.findEnvironment(name);
         if (env != null && env.values.containsKey(name)) {
             env.values.put(name, value);
@@ -50,7 +48,7 @@ public class Environment {
     }
 
     //
-    public Value get(String name) throws LispException {
+    public Value<?> get(String name) throws LispException {
         Environment env = this.findEnvironment(name);
         if (env != null && env.values.containsKey(name)) {
             return env.values.get(name);
