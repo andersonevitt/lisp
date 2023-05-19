@@ -55,6 +55,11 @@ public class CharacterStream implements Iterator<Character> {
         this(new FileInputStream(input), new Position(input.getName()));
     }
 
+    /** Reads single characters until
+     * the end of the file where there are no
+     * characters left
+     * @return whether there are more characters to read
+     */
     @Override
     public boolean hasNext() {
         try {
@@ -72,6 +77,11 @@ public class CharacterStream implements Iterator<Character> {
         }
     }
 
+    /** If there is no element returned from hasNext method,
+     *  NoSuchElementException is returned
+     * @return NoSuchElementException in the case that there are no more elements
+     * @throws NoSuchElementException
+     */
     @Override
     public Character next() throws NoSuchElementException {
         try {
