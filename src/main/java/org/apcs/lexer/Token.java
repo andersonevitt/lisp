@@ -70,11 +70,11 @@ public class Token {
     }
 
     public String toString() {
-        var str = type().name();
+        var str = type.name();
 
-        if (value() == null)
+        if (value == null)
             return str;
         else
-            return str + "(" + value() + ")";
+            return str + "(" + value + ")";
     }
 }

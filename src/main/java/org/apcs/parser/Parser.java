@@ -50,7 +50,7 @@ public class Parser implements Iterator<Value> {
     }
 
     @Override
-    public Value next() throws NoSuchElementException {
+    public Value<?> next() throws NoSuchElementException {
         try {
             return parse();
         } catch (Exception e) {
@@ -94,7 +94,7 @@ public class Parser implements Iterator<Value> {
             throw new ParserException("Unexpected right parenthesis");
         }
 
-        throw new ParserException(new InternalException("Unable to match token"));
+        throw new ParserException(new InternalException("Unable to match token type"));
     }
 
     public Position getPosition() {
