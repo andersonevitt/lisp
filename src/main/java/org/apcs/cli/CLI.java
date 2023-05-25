@@ -15,10 +15,10 @@ import java.io.FileNotFoundException;
 @Command(name = "lisp")
 public class CLI implements Runnable {
     @Option(names = {"-h", "--help"}, usageHelp = true, description = "display a help message")
-    private final boolean help = false;
+    private boolean help = false;
 
     @Option(names = {"-l", "--log"}, description = "Log interpreter output")
-    private final boolean log = false;
+    private boolean log = false;
 
     @Parameters(paramLabel = "<file>", description = "lisp files to execute")
     private File[] files;

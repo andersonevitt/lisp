@@ -1,4 +1,7 @@
 (println "hello world")
+(println (+ 10 20 30))
+;; Must quote. (quote x) is equal to 'x
+(println (quote x))
 
 (def a-list '(122 23 34 321))
 
