@@ -56,7 +56,7 @@ public class Builtins {
     /**
      * Asserts that the number of arguments provided to a function are with the given range.
      *
-     * @param args the arguments provided
+     * @param args  the arguments provided
      * @param range the number of arguments allowed
      * @throws ArityException If there an invalid number of arguments
      */

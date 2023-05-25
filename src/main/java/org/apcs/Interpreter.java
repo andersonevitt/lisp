@@ -6,6 +6,7 @@ import org.apcs.core.Environment;
 import org.apcs.lexer.CharacterStream;
 import org.apcs.lexer.Lexer;
 import org.apcs.lexer.Position;
+import org.apcs.lexer.TokenStream;
 import org.apcs.parser.Parser;
 import org.apcs.parser.ParserException;
 
@@ -15,8 +16,15 @@ public class Interpreter {
     private final Environment env;
     private Position position;
 
-    public Interpreter() throws LispException {
-        env = new Environment();
+    public Interpreter() {
+        try {
+            env = new Environment();
+        } catch (Exception e) {
+            throw new RuntimeException("Fatal error in Interpreter initialization", e);
+        }
+
+        // Load the standard library from the resources directory
+        eval(new CharacterStream(getClass().getResourceAsStream("/stdlib.lisp")));
     }
 
     public void eval(String source) {
@@ -27,7 +35,7 @@ public class Interpreter {
         eval(new Lexer(stream));
     }
 
-    public void eval(Lexer source) {
+    public void eval(TokenStream source) {
         var parser = new Parser(source);
         eval(parser);
     }

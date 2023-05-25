@@ -37,8 +37,8 @@ public class ArityException extends EvalException {
         }
 
         return String.format("""
-                Function call has an incorrect number of arguments;
-                Expected %s but provided %d.
-                """, range, found);
+                                     Function call has an incorrect number of arguments;
+                                     Expected %s but provided %d.
+                                     """, range, found);
     }
 }

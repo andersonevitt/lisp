@@ -14,7 +14,9 @@ import static org.apcs.core.Builtins.requireArity;
 
 @Define("/")
 public class Divide implements BuiltinValue {
-    /** Divides the given arguments
+    /**
+     * Divides the given arguments
+     *
      * @param env  the current environment to use
      * @param args the arguments to the function
      * @return the quotient of the numbers

@@ -22,6 +22,6 @@ public class GT implements BuiltinValue {
         // TODO: add ability for more args
         requireArity(args, 2);
         return new BoolValue(cast(args.get(0).eval(env), NumberValue.class) > cast(args.get(1).eval(env),
-                NumberValue.class));
+                                                                                   NumberValue.class));
     }
 }

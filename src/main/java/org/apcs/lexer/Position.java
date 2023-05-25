@@ -17,12 +17,30 @@
 
 package org.apcs.lexer;
 
+import com.google.common.collect.ComparisonChain;
+
 import java.util.Objects;
 
-public class Position {
+/**
+ * Represents a position (line, column) in a file or string.
+ *
+ * @author Zoe Schauder, Carly Linquist
+ */
+public class Position implements Comparable<Position> {
     private final String file;
     private int line;
     private int column;
+
+    /**
+     * Copy constructor to disallow mutability where necessary
+     *
+     * @param other the object to make a copy of
+     */
+    public Position(Position other) {
+        this.file = other.getFile();
+        this.line = other.getLine();
+        this.column = other.getColumn();
+    }
 
     public Position() {
         this(1, 1);
@@ -108,6 +126,11 @@ public class Position {
         return this.column;
     }
 
+
+    public String getFile() {
+        return file;
+    }
+
     /**
      * Returns the line and column if the file is null.
      * If the file is null, the file is returned in addition
@@ -123,4 +146,16 @@ public class Position {
 
         return str;
     }
+
+    /**
+     * Returns whichever Position comes first in a given file.
+     * This starts by first comparing lines and then comparing columns if they are the same.
+     *
+     * @param o the object to be compared.
+     */
+    @Override
+    public int compareTo(Position o) {
+        return ComparisonChain.start().compare(line, o.getLine()).compare(column, o.getColumn()).result();
+    }
+
 }

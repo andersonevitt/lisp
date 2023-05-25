@@ -12,7 +12,9 @@ import static org.apcs.core.Builtins.cast;
 
 @Define("+")
 public class Add implements BuiltinValue {
-    /** Starts at 0.0 and adds other input to double start
+    /**
+     * Starts at 0.0 and adds other input to double start
+     *
      * @param env  the current environment to use
      * @param args the arguments to the function
      * @return the sum of start (0.0) and other numbers being added

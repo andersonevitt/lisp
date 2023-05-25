@@ -20,6 +20,12 @@ package org.apcs.util;
 
 import java.util.Iterator;
 
+/**
+ * A peekable iterator that is constructed from an iterator and allows it to be peeked.
+ *
+ * @param <E> The iterator element types.
+ * @author Anderson Evitt, Zoe Schauder
+ */
 public class BufferedPeekableIterator<E> implements PeekableIterator<E> {
     private final Iterator<? extends E> iterator;
     private boolean hasPeeked;

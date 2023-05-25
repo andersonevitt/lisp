@@ -15,6 +15,6 @@ public class Or implements BuiltinValue {
     @Override
     public Value<?> apply(Environment env, List<Value<?>> args) throws LispException {
         return new BoolValue(cast(args.get(0).eval(env), BoolValue.class) || cast(args.get(1).eval(env),
-                BoolValue.class));
+                                                                                  BoolValue.class));
     }
 }

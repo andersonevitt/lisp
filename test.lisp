@@ -1,7 +1,4 @@
-
 (println "hello world")
-
-(def nil '())
 
 (def a-list '(122 23 34 321))
 
@@ -21,7 +18,7 @@
         1
         (* n (fact (- n 1)))))
 
-(println (fact 5))
+(println (fact 100))
 
 ;; Syntax Errors
 ; (
@@ -29,5 +26,3 @@
 ; (println 12))
 
 (def x 10)
-
-(println (/ 10 20))

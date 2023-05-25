@@ -27,7 +27,7 @@ import static org.apcs.core.Builtins.requireArity;
 
 public record ListValue(List<Value<?>> values) implements Value<List<Value<?>>> {
     /**
-     * Returns a new list from all of the arguments
+     * Returns a new list from all the arguments
      *
      * @param values the lisp values to construct the list from
      */
@@ -113,21 +113,12 @@ public record ListValue(List<Value<?>> values) implements Value<List<Value<?>>> 
         }
     }
 
-    public Value<?> evalList(List<Value<?>> list, Environment env) throws EvalException {
+    public Value<?> evalList(List<Value<?>> list, Environment env) throws LispException {
         // Evaluate all args except last
         for (int i = 0; i < list.size() - 1; i += 1) {
-            try {
-                list.get(i).eval(env);
-            } catch (LispException e) {
-                throw new RuntimeException(e);
-            }
+            list.get(i).eval(env);
         }
 
-        // return last argument and evaluate it
-        try {
-            return list.get(list.size() - 1).eval(env);
-        } catch (LispException e) {
-            throw new RuntimeException(e);
-        }
+        return list.get(list.size() - 1).eval(env);
     }
 }

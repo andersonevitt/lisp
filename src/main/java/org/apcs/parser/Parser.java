@@ -19,9 +19,9 @@ package org.apcs.parser;
 
 import org.apcs.ast.*;
 import org.apcs.core.InternalException;
-import org.apcs.lexer.Lexer;
 import org.apcs.lexer.Position;
 import org.apcs.lexer.Token;
+import org.apcs.lexer.TokenStream;
 import org.apcs.lexer.TokenType;
 import org.apcs.util.PeekableIterator;
 import org.slf4j.Logger;
@@ -34,12 +34,12 @@ import java.util.NoSuchElementException;
 
 
 @SuppressWarnings("unused")
-public class Parser implements Iterator<Value> {
+public class Parser implements Iterator<Value<?>> {
     private static final Logger log = LoggerFactory.getLogger(Parser.class);
     private final PeekableIterator<Token> lexer;
     private final Position position;
 
-    public Parser(Lexer lexer) {
+    public Parser(TokenStream lexer) {
         this.position = lexer.getPosition();
         this.lexer = PeekableIterator.of(lexer);
     }
@@ -58,7 +58,7 @@ public class Parser implements Iterator<Value> {
         }
     }
 
-    public Value parse() throws ParserException {
+    public Value<?> parse() throws ParserException {
         if (!lexer.hasNext()) {
             throw new ParserException("No more tokens");
         } else if (lexer.peek().isSymbol()) {

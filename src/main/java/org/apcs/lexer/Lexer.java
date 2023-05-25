@@ -19,18 +19,22 @@ package org.apcs.lexer;
 
 import org.apcs.util.PeekableIterator;
 
-import java.util.Iterator;
-
 import static org.apcs.lexer.TokenType.*;
 
-public class Lexer implements Iterator<Token> {
+
+/**
+ * A lexer which is an iterator of tokens that will be used in the parser.
+ *
+ * @author Anderson Evitt, Zoe Schauder
+ */
+public class Lexer implements TokenStream {
     private final PeekableIterator<Character> iterator;
     private final Position position;
 
     /**
-     * Constructs Lexer with position from
+     * Constructs Lexer with position from a stream of characters
      *
-     * @param stream
+     * @param stream the stream of characters to lex
      */
     public Lexer(final CharacterStream stream) {
         this.position = stream.getPosition();
@@ -64,18 +68,18 @@ public class Lexer implements Iterator<Token> {
         switch (iterator.peek()) {
             case '(' -> {
                 iterator.next();
-                return Token.of(LEFT_PAREN);
+                return Token.of(LEFT_PAREN, getPosition());
             }
 
             case ')' -> {
                 iterator.next();
-                return Token.of(RIGHT_PAREN);
+                return Token.of(RIGHT_PAREN, getPosition());
             }
 
             // Quote
             case '\'' -> {
                 iterator.next();
-                return Token.of(QUOTE);
+                return Token.of(QUOTE, getPosition());
             }
 
             // Strings
@@ -89,7 +93,7 @@ public class Lexer implements Iterator<Token> {
 
                 iterator.next();
 
-                return Token.of(STRING, matched.toString().intern());
+                return Token.of(STRING, matched.toString(), getPosition());
             }
 
             // Comments
@@ -102,13 +106,13 @@ public class Lexer implements Iterator<Token> {
             // Quasi-quote
             case '`' -> {
                 iterator.next();
-                return Token.of(TokenType.QUASI_QUOTE);
+                return Token.of(TokenType.QUASI_QUOTE, getPosition());
             }
 
             // unquote
             case ',' -> {
                 iterator.next();
-                return Token.of(TokenType.UNQUOTE);
+                return Token.of(TokenType.UNQUOTE, getPosition());
             }
 
             // Symbol
@@ -122,15 +126,15 @@ public class Lexer implements Iterator<Token> {
                 var str = matched.toString();
 
                 if ("true".equals(str)) {
-                    return Token.of(TokenType.BOOL, true);
+                    return Token.of(TokenType.BOOL, true, getPosition());
                 } else if ("false".equals(str)) {
-                    return Token.of(TokenType.BOOL, false);
+                    return Token.of(TokenType.BOOL, false, getPosition());
                 }
 
                 try {
-                    return Token.of(NUMBER, Double.parseDouble(str));
+                    return Token.of(NUMBER, Double.parseDouble(str), getPosition());
                 } catch (NumberFormatException e) {
-                    return Token.of(SYMBOL, str);
+                    return Token.of(SYMBOL, str, getPosition());
                 }
             }
         }
@@ -151,6 +155,7 @@ public class Lexer implements Iterator<Token> {
      *
      * @return the line and column
      */
+    @Override
     public Position getPosition() {
         return position;
     }
