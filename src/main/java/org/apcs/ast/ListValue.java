@@ -25,6 +25,9 @@ import java.util.List;
 
 import static org.apcs.core.Builtins.requireArity;
 
+/**
+ * A class that represents a lisp list
+ */
 public record ListValue(List<Value<?>> values) implements Value<List<Value<?>>> {
     /**
      * Returns a new list from all the arguments

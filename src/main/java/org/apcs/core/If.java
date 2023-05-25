@@ -11,6 +11,13 @@ import static org.apcs.core.Builtins.requireArity;
 
 @Define("if")
 public class If implements BuiltinValue {
+    /**
+     * Gets a value from vals and returns nil if it cannot be accessed
+     * @param env the current environment
+     * @param vals the arguments
+     * @param index the index of the value
+     * @return the given val or nil
+     */
     public static Value<?> getOrNil(Environment env, List<Value<?>> vals, int index) throws LispException {
         if (index < vals.size()) {
             return vals.get(index).eval(env);

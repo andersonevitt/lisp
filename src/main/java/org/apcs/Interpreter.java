@@ -12,6 +12,10 @@ import org.apcs.parser.ParserException;
 
 import java.util.function.Supplier;
 
+
+/**
+ * An interpreter which evaluates whatever input is given and prints any errors.
+ */
 public class Interpreter {
     private final Environment env;
     private Position position;

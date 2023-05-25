@@ -9,6 +9,10 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Represents a lisp environment. This allows defining setting and getting elements from it by their respective methods.
+ *
+ */
 public class Environment {
     public final Environment parent;
     private final Map<String, Value<?>> values;

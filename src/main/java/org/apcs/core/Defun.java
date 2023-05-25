@@ -9,6 +9,10 @@ import java.util.List;
 import static org.apcs.core.Builtins.cast;
 import static org.apcs.core.Builtins.requireArity;
 
+/**
+ * Defines the given fun in the current environment.
+ * eg. (defun f (x) 10) defines 'f' as a function that returns 10
+ */
 @Define("defun")
 public class Defun implements BuiltinValue {
     @Override

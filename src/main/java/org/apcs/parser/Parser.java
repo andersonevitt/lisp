@@ -24,8 +24,6 @@ import org.apcs.lexer.Token;
 import org.apcs.lexer.TokenStream;
 import org.apcs.lexer.TokenType;
 import org.apcs.util.PeekableIterator;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -33,9 +31,11 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 
-@SuppressWarnings("unused")
+/**
+ * A parser, which is an iterator of Values. This consumes input every time the next or parse methods are called and
+ * keeps track of positions via getPosition().
+ */
 public class Parser implements Iterator<Value<?>> {
-    private static final Logger log = LoggerFactory.getLogger(Parser.class);
     private final PeekableIterator<Token> lexer;
     private final Position position;
 

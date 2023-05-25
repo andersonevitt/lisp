@@ -2,6 +2,9 @@ package org.apcs.core;
 
 import org.apcs.LispException;
 
+/**
+ * Base class for all evaluation-related exceptions
+ */
 public class EvalException extends LispException {
     /**
      * Constructs a new runtime exception with {@code null} as its

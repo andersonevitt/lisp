@@ -5,6 +5,9 @@ import org.apcs.ast.*;
 
 import java.util.List;
 
+/**
+ * Helper methods for writing builtins in lisp
+ */
 public class Builtins {
     private Builtins() {}
 

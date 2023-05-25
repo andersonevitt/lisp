@@ -9,6 +9,9 @@ import picocli.CommandLine.Parameters;
 import java.io.File;
 import java.io.FileNotFoundException;
 
+/**
+ * Represents the command line arguments for the program
+ */
 @Command(name = "lisp")
 public class CLI implements Runnable {
     @Option(names = {"-h", "--help"}, usageHelp = true, description = "display a help message")

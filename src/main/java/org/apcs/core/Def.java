@@ -8,6 +8,10 @@ import java.util.List;
 import static org.apcs.core.Builtins.cast;
 import static org.apcs.core.Builtins.requireArity;
 
+/**
+ * Defines the given value in the current environment
+ * eg. (def x 10) defines 'x' as 10
+ */
 @Define("def")
 public class Def implements BuiltinValue {
     @Override

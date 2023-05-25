@@ -5,6 +5,9 @@ import org.apcs.core.Environment;
 
 import java.util.List;
 
+/**
+ * A lisp function that is defined in java and is called using apply().
+ */
 public interface BuiltinValue extends Value<String> {
     /**
      * Call the current builtin with the given environment and arguments

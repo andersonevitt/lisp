@@ -11,6 +11,10 @@ import java.util.List;
 
 import static org.apcs.core.Builtins.cast;
 
+/**
+ * applys the first argument with the second argument list as its args.
+ * eg. (apply f '(1 2)) is equal to (f 1 2)
+ */
 @Define("apply")
 public class Apply implements BuiltinValue {
     @Override

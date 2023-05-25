@@ -9,6 +9,10 @@ import java.util.List;
 import static org.apcs.core.Builtins.cast;
 import static org.apcs.core.Builtins.requireArity;
 
+/**
+ * Creates a lambda with the given args. The first arg is the arguments, and all the rest of the arguments are the
+ * body.
+ */
 @Define("lambda")
 public class Lambda implements BuiltinValue {
     @Override

@@ -10,6 +10,9 @@ import java.util.List;
 
 import static org.apcs.core.Builtins.cast;
 
+/**
+ * returns a new BoolValue that is the boolean or of the given args.
+ */
 @Define("or")
 public class Or implements BuiltinValue {
     @Override

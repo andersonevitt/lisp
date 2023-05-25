@@ -2,6 +2,11 @@ package org.apcs.ast;
 
 import java.util.List;
 
+/**
+ * Represents an anonymous function or lambda
+ * @param args the lambda argument list
+ * @param body the lambda body
+ */
 public record LambdaValue(List<String> args, List<Value<?>> body) implements Value<List<String>> {
     @Override
     public List<String> value() {

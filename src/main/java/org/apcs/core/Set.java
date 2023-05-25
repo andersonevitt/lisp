@@ -8,6 +8,10 @@ import java.util.List;
 import static org.apcs.core.Builtins.cast;
 import static org.apcs.core.Builtins.requireArity;
 
+/**
+ * Sets the first argument to the second one. This method finds wherever it is defined and modifies that instead of
+ * defining it in the current environment.
+ */
 @Define("set!")
 public class Set implements BuiltinValue {
     @Override

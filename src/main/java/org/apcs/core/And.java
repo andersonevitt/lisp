@@ -10,6 +10,9 @@ import java.util.List;
 
 import static org.apcs.core.Builtins.cast;
 
+/**
+ * returns a new BoolValue that is the boolean and of the given args.
+ */
 @Define("and")
 public class And implements BuiltinValue {
     @Override

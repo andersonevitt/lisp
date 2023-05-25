@@ -2,6 +2,9 @@ package org.apcs.core;
 
 import com.google.common.collect.Range;
 
+/**
+ * Represents an error when the given and expected number of arguments differ
+ */
 public class ArityException extends EvalException {
     /**
      * Constructs a new function arity exception.

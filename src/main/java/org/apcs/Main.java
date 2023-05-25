@@ -20,6 +20,10 @@ package org.apcs;
 import org.apcs.cli.CLI;
 import picocli.CommandLine;
 
+/**
+ * The entry point of the interpreter. This parsers the command line arguments, sets the log level, and interpreters
+ * whatever is given.
+ */
 public class Main {
     public static void main(String[] args) throws Exception {
         // Set log level
