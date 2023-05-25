@@ -3,6 +3,9 @@ package org.apcs.lexer;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+/**
+ * The super class for a lexer which is an iterator of tokens and allows you to get the position via getPosition().
+ */
 public interface TokenStream extends Iterator<Token> {
     /**
      * Returns true or false in the instance

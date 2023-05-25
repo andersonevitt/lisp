@@ -19,6 +19,10 @@ package org.apcs.util;
 
 import java.util.Iterator;
 
+/**
+ * An iterator that supports looking at the current element without consuming it
+ * @param <E> the element type
+ */
 public interface PeekableIterator<E> extends Iterator<E> {
     /**
      * Returns a new peekable iterator from an iterator

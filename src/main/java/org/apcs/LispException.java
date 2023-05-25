@@ -2,6 +2,9 @@ package org.apcs;
 
 import java.security.PrivilegedActionException;
 
+/**
+ * A base class for any exception throws from the lisp interpreter.
+ */
 public class LispException extends Exception {
     /**
      * Constructs a new exception with {@code null} as its detail message.

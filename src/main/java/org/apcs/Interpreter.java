@@ -20,6 +20,9 @@ public class Interpreter {
     private final Environment env;
     private Position position;
 
+    /**
+     * Constructs a new interpreter and does all initializing
+     */
     public Interpreter() {
         try {
             env = new Environment();
@@ -31,19 +34,35 @@ public class Interpreter {
         eval(new CharacterStream(getClass().getResourceAsStream("/stdlib.lisp")));
     }
 
+    /**
+     * Evalues the current input with the interpreter environment
+     * @param source the string which it should takes all values from
+     */
     public void eval(String source) {
         eval(new CharacterStream(source));
     }
 
+    /**
+     * Evalues the current input with the interpreter environment
+     * @param stream the characters which it should take all values from
+     */
     public void eval(CharacterStream stream) {
         eval(new Lexer(stream));
     }
 
+    /**
+     * Evalues the current input with the interpreter environment
+     * @param source the lexer which it should takes all values from
+     */
     public void eval(TokenStream source) {
         var parser = new Parser(source);
         eval(parser);
     }
 
+    /**
+     * Evalues the current input with the interpreter environment
+     * @param source the parser which it should takes all values from
+     */
     public void eval(Parser source) {
         position = source.getPosition();
 
@@ -52,6 +71,10 @@ public class Interpreter {
         }
     }
 
+    /**
+     * Evaluates a value within the interpreter's environment and prints errors, if any
+     * @param value the value to evaluate
+     */
     public void eval(Supplier<Value<?>> value) {
         try {
             value.get().eval(env);

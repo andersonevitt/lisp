@@ -19,6 +19,9 @@ package org.apcs.parser;
 
 import org.apcs.LispException;
 
+/**
+ * An exception class for any parsing related errors
+ */
 public class ParserException extends LispException {
     /**
      * Constructs a new runtime exception with {@code null} as its
